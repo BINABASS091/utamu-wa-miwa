@@ -276,8 +276,7 @@ export default function Home() {
                 <div className="p-5">
                   <h3 className="font-bold font-heading text-gray-900 dark:text-white text-base mb-2">{product.name}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 leading-relaxed">{product.desc}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-green-600 dark:text-green-400 text-base">{product.price}</span>
+                  <div className="flex justify-end">
                     <a
                       href="https://wa.me/255700000000"
                       target="_blank"

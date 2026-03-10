@@ -38,11 +38,11 @@ export default function Header({ darkMode, setDarkMode }) {
               alt="Utamu wa Miwa"
               className="h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-base font-extrabold text-green-700 dark:text-green-400 font-heading tracking-wide">
+            <div className="flex flex-col leading-tight">
+              <span className="text-sm sm:text-base font-extrabold text-green-700 dark:text-green-400 font-heading tracking-wide">
                 Utamu wa Miwa
               </span>
-              <span className="text-xs text-yellow-600 dark:text-yellow-400 font-medium tracking-widest uppercase">
+              <span className="text-[10px] sm:text-xs text-yellow-600 dark:text-yellow-400 font-medium tracking-widest uppercase">
                 Fresh Sugarcane Juice · Zanzibar
               </span>
             </div>
