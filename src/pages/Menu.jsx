@@ -11,7 +11,7 @@ const products = [
     category: 'Classic',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143147/sugarcane_hvtocf.jpg',
     desc: 'Pure freshly pressed sugarcane. No mix, no additives — just pure sweetness.',
-    price: 'TZS 2,000',
+
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-green-400 to-green-600',
     badge: 'Best Seller',
@@ -22,7 +22,6 @@ const products = [
     category: 'Blended',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145489/ginger_el03jm.jpg',
     desc: 'Fresh ginger root blended with sugarcane. A spicy, warming, refreshing combo.',
-    price: 'TZS 2,500',
     sizes: ['Medium', 'Large'],
     gradient: 'from-orange-400 to-yellow-500',
     badge: 'Popular',
@@ -33,7 +32,6 @@ const products = [
     category: 'Blended',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145847/lime_nozlcu.jpg',
     desc: 'Fresh squeezed lime juice mixed with sweet sugarcane for a sharp citrus kick.',
-    price: 'TZS 2,500',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-lime-400 to-green-400',
     badge: null,
@@ -44,7 +42,7 @@ const products = [
     category: 'Add-ons',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145841/ice_il0wab.jpg',
     desc: 'Extra ice cubes added to your juice for maximum cooling.',
-    price: 'TZS 200',
+
     sizes: [],
     gradient: 'from-blue-300 to-cyan-400',
     badge: null,
@@ -141,10 +139,7 @@ export default function Menu() {
                       ))}
                     </div>
                   )}
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="font-extrabold text-green-600 dark:text-green-400 text-lg">
-                      {product.price}
-                    </span>
+                  <div className="flex justify-end mt-auto">
                     <a
                       href={`https://wa.me/255700000000?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(product.name)}`}
                       target="_blank"

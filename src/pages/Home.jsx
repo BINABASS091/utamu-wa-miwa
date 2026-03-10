@@ -13,7 +13,6 @@ const featuredProducts = [
     id: 1,
     name: 'Classic Sugarcane Juice',
     desc: 'Pure, freshly pressed sugarcane â€” sweet, cool, and natural.',
-    price: 'TZS 2,000',
     badge: 'Best Seller',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143147/sugarcane_hvtocf.jpg',
   },
@@ -21,7 +20,6 @@ const featuredProducts = [
     id: 2,
     name: 'Ginger Sugarcane Blend',
     desc: 'A spicy kick of fresh ginger with sweet sugarcane juice.',
-    price: 'TZS 2,500',
     badge: 'Popular',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145489/ginger_el03jm.jpg',
   },
@@ -29,7 +27,6 @@ const featuredProducts = [
     id: 3,
     name: 'Lime Sugarcane Twist',
     desc: 'Fresh squeezed lime juice mixed with sweet sugarcane for a sharp citrus kick.',
-    price: 'TZS 2,500',
     badge: null,
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145847/lime_nozlcu.jpg',
   },
@@ -115,7 +112,7 @@ export default function Home() {
             {/* Left â€” Text */}
             <div className="text-center lg:text-left order-2 lg:order-1">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold rounded-full uppercase tracking-widest mb-6">
-                ðŸŒ¿ Pure &amp; Natural Â· Zanzibar
+                <Leaf size={12} /> Pure &amp; Natural · Zanzibar
               </span>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-white leading-[1.1] mb-6">
@@ -191,7 +188,7 @@ export default function Home() {
 
               {/* Top badge */}
               <div className="absolute top-4 right-4 lg:-right-4 bg-yellow-400 rounded-2xl px-4 py-2 shadow-xl z-20">
-                <p className="text-xs font-extrabold text-gray-900">ðŸŒ¿ 100% Natural</p>
+                <p className="text-xs font-extrabold text-gray-900 flex items-center gap-1"><Leaf size={12} /> 100% Natural</p>
               </div>
             </div>
           </div>
@@ -313,8 +310,7 @@ export default function Home() {
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">{product.name}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 mb-5">{product.desc}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-extrabold text-green-600 dark:text-green-400">{product.price}</span>
+                  <div className="flex justify-end">
                     <a
                       href={`https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(product.name)}`}
                       target="_blank"
