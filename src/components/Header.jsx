@@ -34,16 +34,13 @@ export default function Header({ darkMode, setDarkMode }) {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <img
-              src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
+              src="https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_200/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
               alt="Utamu wa Miwa"
               className="h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
             />
             <div className="flex flex-col leading-tight">
               <span className="text-sm sm:text-base font-extrabold text-green-700 dark:text-green-400 font-heading tracking-wide">
                 Utamu wa Miwa
-              </span>
-              <span className="text-[10px] sm:text-xs text-yellow-600 dark:text-yellow-400 font-medium tracking-widest uppercase">
-                Fresh Sugarcane Juice · Zanzibar
               </span>
             </div>
           </Link>

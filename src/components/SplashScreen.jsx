@@ -27,7 +27,7 @@ export default function SplashScreen({ onDone }) {
       <div className="relative flex flex-col items-center gap-6 px-8 text-center animate-[fadeIn_0.8s_ease_forwards]">
         {/* Logo */}
         <img
-          src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
+          src="https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
           alt="Utamu wa Miwa"
           className="w-72 md:w-96 h-auto object-contain drop-shadow-2xl"
         />

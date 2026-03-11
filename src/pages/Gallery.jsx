@@ -5,7 +5,7 @@ import { WhatsAppIcon } from '../components/BrandIcons'
 const galleryItems = [
   {
     id: 1,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143147/sugarcane_hvtocf.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143147/sugarcane_hvtocf.jpg',
     alt: 'Fresh sugarcane juice',
     label: 'Sugarcane',
     tag: 'Classic',
@@ -13,28 +13,28 @@ const galleryItems = [
   },
   {
     id: 2,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143385/pineapple_bw6j01.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143385/pineapple_bw6j01.jpg',
     alt: 'Fresh pineapple juice',
     label: 'Pineapple',
     tag: 'Blended',
   },
   {
     id: 3,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143147/mango_oefxsz.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143147/mango_oefxsz.jpg',
     alt: 'Fresh mango juice',
     label: 'Mango',
     tag: 'Blended',
   },
   {
     id: 4,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143141/avocado_dax7s8.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143141/avocado_dax7s8.jpg',
     alt: 'Fresh avocado juice',
     label: 'Avocado',
     tag: 'Blended',
   },
   {
     id: 5,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143385/grape41_vvjzs2.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773207345/grape444_rfx006.jpg',
     alt: 'Fresh grape (zabibu) juice',
     label: 'Zabibu',
     tag: 'Blended',

@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773155008/sugar2_is9tf8.jpg'
+const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1773155008/sugar2_is9tf8.jpg'
 
 // --- Featured products data ---
 const featuredProducts = [
@@ -14,21 +14,21 @@ const featuredProducts = [
     name: 'Classic Sugarcane Juice',
     desc: 'Pure, freshly pressed sugarcane â€” sweet, cool, and natural.',
     badge: 'Best Seller',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143147/sugarcane_hvtocf.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
   },
   {
     id: 2,
     name: 'Ginger Sugarcane Blend',
     desc: 'A spicy kick of fresh ginger with sweet sugarcane juice.',
     badge: 'Popular',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145489/ginger_el03jm.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145489/ginger_el03jm.jpg',
   },
   {
     id: 3,
     name: 'Lime Sugarcane Twist',
     desc: 'Fresh squeezed lime juice mixed with sweet sugarcane for a sharp citrus kick.',
     badge: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/v1773145847/lime_nozlcu.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145847/lime_nozlcu.jpg',
   },
 ]
 
@@ -170,6 +170,7 @@ export default function Home() {
                 <img
                   src={HERO_IMAGE}
                   alt="Fresh sugarcane juice"
+                  fetchpriority="high"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
@@ -260,8 +261,9 @@ export default function Home() {
               <div className="flex-1 flex justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-white/20 max-w-xs w-full">
                   <img
-                    src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
+                    src="https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_200/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
                     alt="Utamu wa Miwa"
+                    loading="lazy"
                     className="w-32 h-auto object-contain mx-auto mb-4 drop-shadow-lg"
                   />
                   <p className="text-white text-lg font-semibold font-heading italic">
