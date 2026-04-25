@@ -5,45 +5,45 @@ import { WhatsAppIcon } from '../components/BrandIcons'
 const galleryItems = [
   {
     id: 1,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143147/sugarcane_hvtocf.jpg',
-    alt: 'Fresh sugarcane juice',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    alt: 'Lemon flavor sugarcane juice',
     label: 'Sugarcane',
     tag: 'Classic',
     featured: true,
   },
   {
     id: 2,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143385/pineapple_bw6j01.jpg',
-    alt: 'Fresh pineapple juice',
-    label: 'Pineapple',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    alt: 'Ginger flavor sugarcane juice',
+    label: 'Sugarcane',
     tag: 'Blended',
   },
   {
     id: 3,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143147/mango_oefxsz.jpg',
-    alt: 'Fresh mango juice',
-    label: 'Mango',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    alt: 'Mint flavor sugarcane juice',
+    label: 'Sugarcane',
     tag: 'Blended',
   },
   {
     id: 4,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773143141/avocado_dax7s8.jpg',
-    alt: 'Fresh avocado juice',
-    label: 'Avocado',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    alt: 'Passion flavor sugarcane juice',
+    label: 'Passion',
     tag: 'Blended',
   },
   {
     id: 5,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800/v1773207345/grape444_rfx006.jpg',
-    alt: 'Fresh grape (zabibu) juice',
-    label: 'Zabibu',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    alt: 'Cocumber flavor sugarcane juice',
+    label: 'Cocumber',
     tag: 'Blended',
   },
 ]
 
 // first item spans 2 cols + 2 rows on desktop (bento hero tile)
 const gridSpan = [
-  'sm:col-span-2 lg:col-span-2 lg:row-span-2',
+  'sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2 lg:row-span-2 xl:row-span-2',
   '',
   '',
   '',
@@ -117,7 +117,7 @@ export default function Gallery() {
       {/* ===== BENTO GALLERY GRID ===== */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[240px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-[250px] sm:auto-rows-[300px] lg:auto-rows-[350px]">
             {galleryItems.map((item, idx) => (
               <div
                 key={item.id}
@@ -129,7 +129,7 @@ export default function Gallery() {
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
 
                 {/* Gradient overlay */}

@@ -48,7 +48,10 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Classic Sugarcane Juice</li>
               <li>Ginger Sugarcane Blend</li>
-              <li>Lime Sugarcane Twist</li>
+              <li>Lemon Sugarcane Twist</li>
+              <li>Mint Sugarcane Twist</li>
+              <li>Passion Sugarcane Twist</li>
+              <li>Cocumber Sugarcane Twist</li>
             </ul>
           </div>
 

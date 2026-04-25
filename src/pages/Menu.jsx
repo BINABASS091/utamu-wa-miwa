@@ -28,21 +28,50 @@ const products = [
   },
   {
     id: 3,
-    name: 'Lime Sugarcane Twist',
+    name: 'Lemon Sugarcane Twist',
     category: 'Blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145847/lime_nozlcu.jpg',
-    desc: 'Fresh squeezed lime juice mixed with sweet sugarcane for a sharp citrus kick.',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill,g_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    desc: 'Fresh squeezed lemon juice mixed with sweet sugarcane for a sharp citrus kick.',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-lime-400 to-green-400',
     badge: null,
   },
   {
     id: 4,
+    name: 'Mint Sugarcane Twist',
+    category: 'Blended',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    desc: 'Cooling mint leaves blended with fresh sugarcane for a refreshing burst of flavor.',
+    sizes: ['Small', 'Medium', 'Large'],
+    gradient: 'from-green-400 to-emerald-500',
+    badge: null,
+  },
+  {
+    id: 5,
+    name: 'Passion Sugarcane Twist',
+    category: 'Blended',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill,g_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    desc: 'Tropical passion fruit mixed with sugarcane for an exotic, sweet-tart experience.',
+    sizes: ['Small', 'Medium', 'Large'],
+    gradient: 'from-purple-400 to-pink-500',
+    badge: null,
+  },
+  {
+    id: 6,
+    name: 'Cocumber Sugarcane Twist',
+    category: 'Blended',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill,g_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    desc: 'Fresh cucumber blended with sugarcane for a hydrating, cooling, and crisp taste.',
+    sizes: ['Small', 'Medium', 'Large'],
+    gradient: 'from-green-300 to-teal-400',
+    badge: null,
+  },
+  {
+    id: 7,
     name: 'Extra Ice',
     category: 'Add-ons',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145841/ice_il0wab.jpg',
     desc: 'Extra ice cubes added to your juice for maximum cooling.',
-
     sizes: [],
     gradient: 'from-blue-300 to-cyan-400',
     badge: null,
@@ -101,7 +130,7 @@ export default function Menu() {
                 className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
               >
                 {/* Product image */}
-                <div className="relative h-40 flex-shrink-0 overflow-hidden">
+                <div className="relative h-48 sm:h-52 md:h-56 lg:h-60 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
                     alt={product.name}

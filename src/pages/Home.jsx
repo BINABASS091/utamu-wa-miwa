@@ -21,14 +21,35 @@ const featuredProducts = [
     name: 'Ginger Sugarcane Blend',
     desc: 'A spicy kick of fresh ginger with sweet sugarcane juice.',
     badge: 'Popular',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145489/ginger_el03jm.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
   },
   {
     id: 3,
-    name: 'Lime Sugarcane Twist',
-    desc: 'Fresh squeezed lime juice mixed with sweet sugarcane for a sharp citrus kick.',
+    name: 'Lemon Sugarcane Twist',
+    desc: 'Fresh squeezed lemon juice mixed with sweet sugarcane for a sharp citrus kick.',
     badge: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145847/lime_nozlcu.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+  },
+  {
+    id: 4,
+    name: 'Mint Sugarcane Twist',
+    desc: 'Cooling mint leaves blended with fresh sugarcane for a refreshing burst of flavor.',
+    badge: 'New',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+  },
+  {
+    id: 5,
+    name: 'Passion Sugarcane Twist',
+    desc: 'Tropical passion fruit mixed with sugarcane for an exotic, sweet-tart experience.',
+    badge: 'New',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+  },
+  {
+    id: 6,
+    name: 'Cocumber Sugarcane Twist',
+    desc: 'Fresh cucumber blended with sugarcane for a hydrating, cooling, and crisp taste.',
+    badge: 'New',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
   },
 ]
 
@@ -290,17 +311,17 @@ export default function Home() {
               All juices freshly pressed on demand â€” choose your flavor, enjoy the freshness.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8">
             {featuredProducts.map((product) => (
               <div
                 key={product.id}
                 className="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
               >
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-56 sm:h-60 md:h-64 lg:h-72 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   {product.badge && (
