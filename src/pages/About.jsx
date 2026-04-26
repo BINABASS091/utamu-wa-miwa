@@ -1,23 +1,26 @@
 import { CheckCircle } from 'lucide-react'
 import { SugarCaneIcon } from '../components/BrandIcons'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const values = [
-  { title: 'Freshness First', desc: 'We press every glass to order — never pre-made, always fresh.' },
-  { title: 'Local Sources', desc: 'Sugarcane from trusted Zanzibari farmers who share our passion.' },
-  { title: 'Hygiene & Safety', desc: 'Clean preparation environment, food-safe equipment, every time.' },
-  { title: 'Community Impact', desc: 'Supporting local farmers and creating jobs in Zanzibar.' },
+  { titleKey: 'about.values.freshness.title', descKey: 'about.values.freshness.desc' },
+  { titleKey: 'about.values.local.title', descKey: 'about.values.local.desc' },
+  { titleKey: 'about.values.hygiene.title', descKey: 'about.values.hygiene.desc' },
+  { titleKey: 'about.values.community.title', descKey: 'about.values.community.desc' },
 ]
 
 const milestones = [
-  { year: '2018', event: 'Started as a small cart in Stone Town, Zanzibar.' },
-  { year: '2019', event: 'Expanded to 3 flavors and doubled daily sales.' },
-  { year: '2021', event: 'Launched blended flavors — ginger, lemon, and mint.' },
-  { year: '2023', event: 'Served 500+ happy customers monthly.' },
-  { year: '2025', event: 'Launched our official online presence. Welcome!' },
+  { year: '2018', eventKey: 'about.milestone.2018' },
+  { year: '2019', eventKey: 'about.milestone.2019' },
+  { year: '2021', eventKey: 'about.milestone.2021' },
+  { year: '2023', eventKey: 'about.milestone.2023' },
+  { year: '2025', eventKey: 'about.milestone.2025' },
 ]
 
 export default function About() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -28,10 +31,9 @@ export default function About() {
                 alt="Utamu wa Miwa"
                 className="w-56 h-auto object-contain mx-auto mb-6 drop-shadow-lg"
               />
-          <h1 className="text-5xl font-extrabold font-heading text-white mb-4">Our Story</h1>
+          <h1 className="text-5xl font-extrabold font-heading text-white mb-4">{t('about.hero.subtitle')}</h1>
           <p className="text-green-200 text-xl leading-relaxed max-w-2xl mx-auto">
-            A humble beginning, a bold vision — bringing the purest taste of
-            Zanzibar sugarcane juice to every corner of the island.
+            {t('about.hero.description')}
           </p>
         </div>
       </section>
@@ -41,25 +43,20 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div className="animate-slide-up">
-              <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">About Us</span>
+              <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">{t('about.hero.title')}</span>
               <h2 className="text-4xl font-extrabold font-heading text-gray-900 dark:text-white mt-3 mb-6 leading-tight">
-                Sweetness from the <span className="text-green-600">Soil</span>
+                {t('about.story.title').split(' ').map((word, i) => 
+                  word === 'Soil' ? <span key={i} className="text-green-600">{word}</span> : word
+                ).reduce((prev, curr) => [prev, ' ', curr])}
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
-                Utamu wa Miwa (meaning "Sweetness of the Cane" in Swahili) was born out of a
-                deep love for natural, wholesome drinks. Our founder grew up watching family
-                members press fresh cane juice in the fields of Zanzibar — it was the drink
-                of celebration, of heat, of life.
+                {t('about.story.p1')}
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
-                In 2018, that family tradition became a business. Starting with one cart and
-                one hand press in Stone Town, we began serving the freshest sugarcane juice
-                to locals and tourists alike.
+                {t('about.story.p2')}
               </p>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Today, Utamu wa Miwa stands for authenticity — every glass pressed fresh,
-                every ingredient local, every customer treated like family. This is not just
-                juice. This is Zanzibar in a cup.
+                {t('about.story.p3')}
               </p>
             </div>
 
@@ -88,20 +85,20 @@ export default function About() {
       <section className="py-20 bg-green-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">Our Values</span>
+            <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">{t('about.values.title')}</span>
             <h2 className="text-4xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              What We Stand For
+              {t('about.values.subtitle')}
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v) => (
               <div
-                key={v.title}
+                key={v.titleKey}
                 className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <CheckCircle className="text-3xl text-green-500 mb-3" size={28} />
-                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-2">{v.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{v.desc}</p>
+                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-2">{t(v.titleKey)}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{t(v.descKey)}</p>
               </div>
             ))}
           </div>
@@ -112,9 +109,9 @@ export default function About() {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">Journey</span>
+            <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">{t('about.journey.title')}</span>
             <h2 className="text-4xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              Our Milestones
+              {t('about.milestones.title')}
             </h2>
           </div>
           <div className="relative border-l-4 border-green-500 pl-8 space-y-10">
@@ -122,7 +119,7 @@ export default function About() {
               <div key={i} className="relative">
                 <span className="absolute -left-5 top-1.5 w-6 h-6 rounded-full bg-green-500 border-4 border-white dark:border-gray-900 block" />
                 <p className="text-xs font-bold text-green-600 dark:text-green-400 uppercase tracking-widest mb-1">{m.year}</p>
-                <p className="text-gray-700 dark:text-gray-300">{m.event}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t(m.eventKey)}</p>
               </div>
             ))}
           </div>
@@ -133,16 +130,16 @@ export default function About() {
       <section className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-center">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-extrabold font-heading text-white mb-4">
-            Come Taste the Difference
+            {t('about.cta.title')}
           </h2>
           <p className="text-green-100 mb-8 text-lg">
-            Visit us in Stone Town or order on WhatsApp — freshness guaranteed.
+            {t('about.cta.description')}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-green-700 font-bold rounded-full hover:bg-yellow-50 transition-all hover:shadow-xl hover:-translate-y-1 text-lg"
           >
-            Contact Us →
+            {t('nav.contact')} →
           </Link>
         </div>
       </section>

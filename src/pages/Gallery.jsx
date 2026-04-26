@@ -1,54 +1,138 @@
-import { useState, useEffect, useCallback } from 'react'
-import { X, ZoomIn, ChevronLeft, ChevronRight, Leaf } from 'lucide-react'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { X, ZoomIn, ChevronLeft, ChevronRight, Leaf, Loader2 } from 'lucide-react'
 import { WhatsAppIcon } from '../components/BrandIcons'
 import { useLanguage } from '../contexts/LanguageContext'
 
 const galleryItems = [
   {
     id: 1,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 1200w'
+    ],
     altKey: 'product.lemon',
     labelKey: 'gallery.tag.classic',
     tagKey: 'gallery.tag.classic',
     featured: true,
+    description: 'Fresh lemon sugarcane juice with a zesty twist'
   },
   {
     id: 2,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 1200w'
+    ],
     altKey: 'product.ginger',
     labelKey: 'gallery.tag.blended',
     tagKey: 'gallery.tag.blended',
+    description: 'Spicy ginger sugarcane blend for an energizing boost'
   },
   {
     id: 3,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 1200w'
+    ],
     altKey: 'product.mint',
     labelKey: 'gallery.tag.blended',
     tagKey: 'gallery.tag.blended',
+    description: 'Refreshing mint sugarcane juice with cooling properties'
   },
   {
     id: 4,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 1200w'
+    ],
     altKey: 'product.passion',
     labelKey: 'gallery.tag.blended',
     tagKey: 'gallery.tag.blended',
+    description: 'Tropical passion fruit sugarcane blend'
   },
   {
     id: 5,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 1200w'
+    ],
     altKey: 'product.cucumber',
     labelKey: 'gallery.tag.blended',
     tagKey: 'gallery.tag.blended',
+    description: 'Cool cucumber sugarcane juice for hydration'
   },
   {
     id: 6,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773143147/sugarcane_hvtocf.jpg 1200w'
+    ],
     altKey: 'product.classic',
     labelKey: 'gallery.tag.classic',
     tagKey: 'gallery.tag.classic',
     featured: true,
+    description: 'Pure, classic sugarcane juice - the original taste'
   },
 ]
+
+// Enhanced image component with lazy loading
+const LazyImage = ({ src, srcSet, alt, className, onLoad }) => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const imgRef = useRef()
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={imgRef} className="relative">
+      {!isLoaded && isInView && (
+        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
+          <Loader2 className="w-8 h-8 text-gray-400 animate-spin" />
+        </div>
+      )}
+      {isInView && (
+        <img
+          src={src}
+          srcSet={srcSet}
+          alt={alt}
+          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+          onLoad={() => {
+            setIsLoaded(true)
+            onLoad?.()
+          }}
+          loading="lazy"
+        />
+      )}
+    </div>
+  )
+}
 
 // first item spans 2 cols + 2 rows on desktop (bento hero tile)
 const gridSpan = [
@@ -62,6 +146,7 @@ const gridSpan = [
 
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
+  const [loadedImages, setLoadedImages] = useState(new Set())
   const { t } = useLanguage()
 
   const prev = useCallback(() =>
@@ -136,15 +221,15 @@ export default function Gallery() {
                 onClick={() => setLightboxIndex(idx)}
               >
                 {/* Photo */}
-                <img
+                <LazyImage
                   src={item.src}
+                  srcSet={item.srcSet}
                   alt={t(item.altKey)}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                {/* Enhanced gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Tag badge (top-left) */}
                 {item.tagKey && (
@@ -160,9 +245,12 @@ export default function Gallery() {
                   </span>
                 )}
 
-                {/* Label (bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="text-white font-bold text-sm">{t(item.labelKey)}</p>
+                {/* Enhanced label with description (bottom) */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-white font-bold text-sm mb-1">{t(item.labelKey)}</p>
+                  {item.description && (
+                    <p className="text-white/80 text-xs line-clamp-2">{item.description}</p>
+                  )}
                 </div>
               </div>
             ))}
@@ -219,16 +307,43 @@ export default function Gallery() {
             <ChevronLeft size={24} />
           </button>
 
-          {/* Image */}
-          <div className="max-w-4xl w-full mx-16" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={active.src}
-              alt={active.alt}
-              className="w-full h-auto rounded-2xl shadow-2xl max-h-[75vh] object-contain"
-            />
-            <div className="mt-5 text-center">
-              <p className="text-white font-extrabold font-heading text-xl">{active.label}</p>
-              <p className="text-white/50 text-sm mt-1">{active.alt}</p>
+          {/* Enhanced Image Container */}
+          <div className="max-w-5xl w-full mx-4 sm:mx-8 lg:mx-16" onClick={(e) => e.stopPropagation()}>
+            <div className="relative">
+              <img
+                src={active.src}
+                srcSet={active.srcSet}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                alt={t(active.altKey)}
+                className="w-full h-auto rounded-2xl shadow-2xl max-h-[75vh] object-contain"
+              />
+              {/* Image loading indicator */}
+              {!loadedImages.has(active.id) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-2xl">
+                  <Loader2 className="w-8 h-8 text-white animate-spin" />
+                </div>
+              )}
+            </div>
+            {/* Enhanced image information */}
+            <div className="mt-6 text-center space-y-2">
+              <h3 className="text-white font-extrabold font-heading text-2xl">{t(active.altKey)}</h3>
+              <p className="text-white/90 text-lg">{t(active.labelKey)}</p>
+              {active.description && (
+                <p className="text-white/70 text-sm max-w-2xl mx-auto">{active.description}</p>
+              )}
+              {/* Product tags */}
+              <div className="flex justify-center gap-2 mt-3">
+                {active.tagKey && (
+                  <span className="px-3 py-1 bg-white/20 text-white text-xs font-medium rounded-full">
+                    {t(active.tagKey)}
+                  </span>
+                )}
+                {active.featured && (
+                  <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 text-xs font-medium rounded-full">
+                    {t('gallery.featured')}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 

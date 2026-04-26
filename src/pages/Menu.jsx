@@ -1,16 +1,22 @@
 import { useState } from 'react'
 import { WhatsAppIcon } from '../components/BrandIcons'
-import { Filter } from 'lucide-react'
+import { Filter, Plus } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useCart } from '../contexts/CartContext'
+import { formatPrice, getPriceCategories } from '../utils/currency'
 
 const categoryKeys = ['menu.all', 'menu.classic', 'menu.blended', 'menu.tropical']
 
-const products = [
+const menuItems = [
   {
     id: 1,
     nameKey: 'product.classic',
     categoryKey: 'menu.classic',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w'
+    ],
     descKey: 'product.classic.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-green-400 to-green-600',
@@ -20,7 +26,11 @@ const products = [
     id: 2,
     nameKey: 'product.ginger',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 800w'
+    ],
     descKey: 'product.ginger.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-orange-400 to-red-500',
@@ -30,7 +40,11 @@ const products = [
     id: 3,
     nameKey: 'product.lemon',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w'
+    ],
     descKey: 'product.lemon.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-yellow-400 to-green-500',
@@ -40,7 +54,11 @@ const products = [
     id: 4,
     nameKey: 'product.mint',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 800w'
+    ],
     descKey: 'product.mint.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-green-400 to-teal-500',
@@ -50,7 +68,11 @@ const products = [
     id: 5,
     nameKey: 'product.passion',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 800w'
+    ],
     descKey: 'product.passion.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-purple-400 to-pink-500',
@@ -60,7 +82,11 @@ const products = [
     id: 6,
     nameKey: 'product.cucumber',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 800w'
+    ],
     descKey: 'product.cucumber.desc',
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-green-400 to-emerald-500',
@@ -70,7 +96,11 @@ const products = [
     id: 7,
     nameKey: 'product.extraIce',
     categoryKey: 'menu.addons',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773145841/ice_il0wab.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145841/ice_il0wab.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145841/ice_il0wab.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145841/ice_il0wab.jpg 800w'
+    ],
     descKey: 'product.extraIce.desc',
     sizes: [],
     gradient: 'from-blue-300 to-cyan-400',
@@ -79,8 +109,11 @@ const products = [
 ]
 
 export default function Menu() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const { addToCart } = useCart()
   const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedSize, setSelectedSize] = useState({})
+  const priceCategories = getPriceCategories()
 
   const filtered = activeCategory === 'All'
     ? products
@@ -137,8 +170,11 @@ export default function Menu() {
                 <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
+                    srcSet={product.imageSet}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     alt={t(product.nameKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   {product.badgeKey && (
                     <span className="absolute top-3 right-3 px-2 py-0.5 bg-white/90 text-green-700 text-xs font-bold rounded-full shadow">
@@ -161,26 +197,55 @@ export default function Menu() {
                     {t(product.descKey)}
                   </p>
                   {product.sizes.length > 0 && (
-                    <div className="flex gap-1 mb-3 flex-wrap">
-                      {product.sizes.map((size) => (
-                        <span
-                          key={size}
-                          className="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-full"
+                    <div className="mb-3">
+                      <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">{t('price.selectPrice')}:</p>
+                      <div className="flex gap-1 flex-wrap">
+                        <button
+                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'small' }))}
+                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                            selectedSize[product.id] === 'small'
+                              ? 'bg-green-600 text-white'
+                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                          }`}
                         >
-                          {size}
-                        </span>
-                      ))}
+                          {t('price.smallGlass')}
+                        </button>
+                        <button
+                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'medium' }))}
+                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                            selectedSize[product.id] === 'medium'
+                              ? 'bg-green-600 text-white'
+                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          {t('price.mediumGlass')}
+                        </button>
+                        <button
+                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'large' }))}
+                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                            selectedSize[product.id] === 'large'
+                              ? 'bg-green-600 text-white'
+                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          {t('price.largeBottle')}
+                        </button>
+                      </div>
                     </div>
                   )}
-                  <div className="flex justify-end mt-auto">
-                    <a
-                      href={`https://wa.me/255700000000?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(product.name)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <div className="flex justify-between items-center mt-auto">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {t('price.from')} {formatPrice(priceCategories.small, language)}
+                    </span>
+                    <button
+                      onClick={() => {
+                        const size = selectedSize[product.id] || 'medium'
+                        addToCart(product, 1, size)
+                      }}
                       className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-full transition-colors"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5" /> Order
-                    </a>
+                      <Plus className="w-3.5 h-3.5" /> {t('cart.addToCart')}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -199,7 +264,7 @@ export default function Menu() {
       <section className="py-12 bg-green-50 dark:bg-gray-900 text-center">
         <div className="max-w-2xl mx-auto px-4">
           <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-            📞 <strong>Custom orders welcome!</strong> Want a special blend? Contact us on WhatsApp
+            📞 <strong>{t('menu.customOrders')}</strong> {t('menu.customOrdersDesc')}
             and we'll make your perfect juice. Prices may vary by size.
           </p>
           <a
@@ -208,7 +273,7 @@ export default function Menu() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full transition-colors"
           >
-            <WhatsAppIcon className="w-4 h-4" /> Custom Order
+            <WhatsAppIcon className="w-4 h-4" /> {t('menu.customOrder')}
           </a>
         </div>
       </section>

@@ -3,12 +3,14 @@ import { useState, useEffect, useCallback } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SplashScreen from './components/SplashScreen'
+import ShoppingCart from './components/ShoppingCart'
 import Home from './pages/Home'
 import About from './pages/About'
 import Menu from './pages/Menu'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { CartProvider } from './contexts/CartContext'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -26,24 +28,27 @@ function App() {
 
   return (
     <LanguageProvider>
-      <>
-        {showSplash && <SplashScreen onDone={handleSplashDone} />}
-        <Router>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-            <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/menu" element={<Menu />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/contact" element={<Contact />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </>
+      <CartProvider>
+        <>
+          {showSplash && <SplashScreen onDone={handleSplashDone} />}
+          <Router>
+            <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+              <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/menu" element={<Menu />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </Router>
+          <ShoppingCart />
+        </>
+      </CartProvider>
     </LanguageProvider>
   )
 }

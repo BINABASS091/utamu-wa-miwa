@@ -1,10 +1,13 @@
 ﻿import { Link } from 'react-router-dom'
-import { Star, ArrowRight, Droplet, Zap, Heart, Award, Leaf } from 'lucide-react'
+import { Star, ArrowRight, Droplet, Zap, Heart, Award, Leaf, Plus } from 'lucide-react'
 import { WhatsAppIcon, SugarCaneIcon } from '../components/BrandIcons'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useCart } from '../contexts/CartContext'
+import { formatPrice, getPriceCategories } from '../utils/currency'
 
 const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1773155008/sugar2_is9tf8.jpg'
 
@@ -15,28 +18,48 @@ const featuredProducts = [
     nameKey: 'product.classic',
     descKey: 'product.classic.desc',
     badgeKey: 'product.badge.popular',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773143147/sugarcane_hvtocf.jpg 1200w'
+    ],
   },
   {
     id: 2,
     nameKey: 'product.ginger',
     descKey: 'product.ginger.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 1200w'
+    ],
   },
   {
     id: 3,
     nameKey: 'product.lemon',
     descKey: 'product.lemon.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 1200w'
+    ],
   },
   {
     id: 4,
     nameKey: 'product.mint',
     descKey: 'product.mint.desc',
     badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 1200w'
+    ],
   },
   {
     id: 5,
@@ -119,7 +142,10 @@ const sliderSettings = {
 }
 
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const { addToCart } = useCart()
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const priceCategories = getPriceCategories()
 
   return (
     <div className="pt-16 overflow-x-hidden">
@@ -262,7 +288,7 @@ export default function Home() {
             </div>
             <div className="relative p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-10">
               <div className="flex-1 text-center lg:text-left">
-                <span className="text-yellow-400 font-bold text-sm uppercase tracking-widest">Our Story</span>
+                <span className="text-yellow-400 font-bold text-sm uppercase tracking-widest">{t('about.hero.subtitle')}</span>
                 <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mt-3 mb-6 leading-tight">
                   Born from the Heart<br />of Zanzibar
                 </h2>
@@ -275,7 +301,7 @@ export default function Home() {
                   to="/about"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-extrabold rounded-full transition-all duration-200 hover:shadow-xl hover:-translate-y-1"
                 >
-                  Read Our Story <ArrowRight size={18} />
+                  {t('home.about.cta')} <ArrowRight size={18} />
                 </Link>
               </div>
               <div className="flex-1 flex justify-center">
@@ -319,8 +345,11 @@ export default function Home() {
                 <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
+                    srcSet={product.imageSet}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     alt={t(product.nameKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   {product.badgeKey && (
@@ -331,16 +360,18 @@ export default function Home() {
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">{t(product.nameKey)}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 mb-5">{t(product.descKey)}</p>
-                  <div className="flex justify-end">
-                    <a
-                      href={`https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(t(product.nameKey))}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex-1">{t(product.descKey)}</p>
+                  <div className="flex justify-between items-end mt-4">
+                    <div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('price.from')}</p>
+                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">{formatPrice(priceCategories.small, language)}</p>
+                    </div>
+                    <button
+                      onClick={() => addToCart(product, 1, 'medium')}
                       className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-full transition-colors shadow hover:shadow-lg"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5" /> Order
-                    </a>
+                      <Plus className="w-3.5 h-3.5" /> {t('cart.addToCart')}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -395,13 +426,13 @@ export default function Home() {
         </div>
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <span className="inline-block px-4 py-1.5 bg-yellow-400/20 border border-yellow-400/30 text-yellow-300 text-xs font-bold rounded-full uppercase tracking-widest mb-6">
-            Order Now
+            {t('common.order')}
           </span>
           <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mb-4">
             Ready for a Refreshing Sip?
           </h2>
           <p className="text-green-200 text-lg mb-10 max-w-lg mx-auto">
-            Order now on WhatsApp and we'll have your fresh juice ready for you!
+            {t('home.cta.description')}
           </p>
           <a
             href="https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20some%20sugarcane%20juice."
@@ -409,7 +440,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-4 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-extrabold rounded-full text-lg transition-all duration-200 hover:shadow-2xl hover:-translate-y-1"
           >
-            <WhatsAppIcon className="w-6 h-6" /> Chat on WhatsApp
+            <WhatsAppIcon className="w-6 h-6" /> {t('home.cta.button')}
           </a>
         </div>
       </section>

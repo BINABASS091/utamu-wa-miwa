@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { SugarCaneIcon } from './BrandIcons'
 import LanguageSwitcher from './LanguageSwitcher'
+import CartIcon from './CartIcon'
 import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Header({ darkMode, setDarkMode }) {
@@ -66,11 +67,12 @@ export default function Header({ darkMode, setDarkMode }) {
               </NavLink>
             ))}
             <LanguageSwitcher />
+            <CartIcon />
             <Link
               to="/contact"
               className="ml-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              Order Now
+              {t('common.order')}
             </Link>
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -84,6 +86,7 @@ export default function Header({ darkMode, setDarkMode }) {
           {/* Mobile controls */}
           <div className="flex md:hidden items-center gap-3">
             <LanguageSwitcher />
+            <CartIcon />
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-full text-gray-600 dark:text-gray-300"
@@ -128,7 +131,7 @@ export default function Header({ darkMode, setDarkMode }) {
               onClick={() => setMenuOpen(false)}
               className="mt-1 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-full text-center"
             >
-              Order Now
+              {t('common.order')}
             </Link>
           </nav>
         </div>

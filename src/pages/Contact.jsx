@@ -1,19 +1,21 @@
 import { WhatsAppIcon } from '../components/BrandIcons'
 import { Phone, MapPin } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Contact() {
+  const { t } = useLanguage()
 
   return (
     <div className="pt-16">
       {/* Hero */}
       <section className="bg-gradient-to-br from-green-700 to-green-900 py-20 text-center">
         <div className="max-w-3xl mx-auto px-4">
-          <span className="text-green-300 font-semibold text-sm uppercase tracking-widest">Contact</span>
+          <span className="text-green-300 font-semibold text-sm uppercase tracking-widest">{t('contact.hero.title')}</span>
           <h1 className="text-5xl font-extrabold font-heading text-white mt-3 mb-4">
-            Get In Touch
+            {t('contact.hero.subtitle')}
           </h1>
           <p className="text-green-200 text-lg">
-            We'd love to hear from you — orders, questions, or just a hello!
+            {t('contact.hero.description')}
           </p>
         </div>
       </section>
@@ -26,7 +28,7 @@ export default function Contact() {
             {/* Contact info */}
             <div>
               <h2 className="text-3xl font-extrabold font-heading text-gray-900 dark:text-white mb-6">
-                Contact Information
+                {t('contact.info.title')}
               </h2>
               <div className="space-y-5 mb-8">
                 <div className="flex items-start gap-4">
@@ -34,9 +36,9 @@ export default function Contact() {
                     <MapPin className="text-green-600 dark:text-green-400" size={18} />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Location</p>
+                    <p className="font-semibold text-gray-900 dark:text-white">{t('contact.info.location')}</p>
                     <p className="text-gray-500 dark:text-gray-400 text-sm">
-                      Stone Town, Zanzibar, Tanzania
+                      {t('contact.info.location.address')}
                     </p>
                   </div>
                 </div>
@@ -45,7 +47,7 @@ export default function Contact() {
                     <Phone className="text-green-600 dark:text-green-400 flex-shrink-0" size={18} />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Phone / WhatsApp</p>
+                    <p className="font-semibold text-gray-900 dark:text-white">{t('contact.info.phone')}</p>
                     <a href="tel:+255718622621" className="text-green-600 dark:text-green-400 text-sm hover:underline">
                       +255 718 622 621
                     </a>
@@ -55,12 +57,12 @@ export default function Contact() {
 
               {/* Opening hours */}
               <div className="bg-green-50 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-3">Opening Hours</h3>
+                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-3">{t('contact.hours.title')}</h3>
                 <div className="space-y-1 text-sm">
                   {[
-                    { day: 'Monday – Friday', hours: '7:00 AM – 8:00 PM' },
-                    { day: 'Saturday', hours: '7:00 AM – 9:00 PM' },
-                    { day: 'Sunday', hours: '8:00 AM – 6:00 PM' },
+                    { day: t('contact.hours.monday'), hours: '7:00 AM – 8:00 PM' },
+                    { day: t('contact.hours.saturday'), hours: '7:00 AM – 9:00 PM' },
+                    { day: t('contact.hours.sunday'), hours: '8:00 AM – 6:00 PM' },
                   ].map((row) => (
                     <div key={row.day} className="flex justify-between gap-4">
                       <span className="text-gray-600 dark:text-gray-400">{row.day}</span>
@@ -72,7 +74,7 @@ export default function Contact() {
 
               {/* Reach us */}
               <div>
-                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-3">Order & Contact</h3>
+                <h3 className="font-bold font-heading text-gray-900 dark:text-white mb-3">{t('contact.order.title')}</h3>
                 <div className="flex flex-wrap gap-3">
                   <a
                     href="https://wa.me/255718622621?text=Hello!%20I%20want%20to%20order%20sugarcane%20juice."
@@ -80,13 +82,13 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full text-sm transition-colors"
                   >
-                    <WhatsAppIcon className="w-4 h-4" /> Chat on WhatsApp
+                    <WhatsAppIcon className="w-4 h-4" /> {t('contact.whatsapp.chat')}
                   </a>
                   <a
                     href="tel:+255718622621"
                     className="flex items-center gap-2 px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-full text-sm transition-colors"
                   >
-                    <Phone size={16} /> Call Us
+                    <Phone size={16} /> {t('contact.phone.call')}
                   </a>
                 </div>
               </div>
@@ -95,7 +97,7 @@ export default function Contact() {
             {/* Direct contact panel */}
             <div>
               <h2 className="text-3xl font-extrabold font-heading text-gray-900 dark:text-white mb-6">
-                Reach Us Directly
+                {t('contact.direct.title')}
               </h2>
               <div className="space-y-5">
 
@@ -110,9 +112,9 @@ export default function Contact() {
                     <WhatsAppIcon className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900 dark:text-white text-lg">WhatsApp</p>
+                    <p className="font-bold text-gray-900 dark:text-white text-lg">{t('contact.whatsapp.title')}</p>
                     <p className="text-green-600 dark:text-green-400 text-sm font-medium">+255 718 622 621</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">Tap to chat — we reply fast!</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{t('contact.whatsapp.description')}</p>
                   </div>
                 </a>
 
@@ -125,9 +127,9 @@ export default function Contact() {
                     <Phone className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900 dark:text-white text-lg">Phone Call</p>
+                    <p className="font-bold text-gray-900 dark:text-white text-lg">{t('contact.phone.title')}</p>
                     <p className="text-gray-700 dark:text-gray-300 text-sm font-medium">+255 718 622 621</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">Call us anytime during opening hours</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{t('contact.phone.description')}</p>
                   </div>
                 </a>
               </div>
