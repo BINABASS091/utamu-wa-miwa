@@ -8,6 +8,7 @@ import About from './pages/About'
 import Menu from './pages/Menu'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
+import { LanguageProvider } from './contexts/LanguageContext'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -24,24 +25,26 @@ function App() {
   const handleSplashDone = useCallback(() => setShowSplash(false), [])
 
   return (
-    <>
-      {showSplash && <SplashScreen onDone={handleSplashDone} />}
-      <Router>
-        <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </>
+    <LanguageProvider>
+      <>
+        {showSplash && <SplashScreen onDone={handleSplashDone} />}
+        <Router>
+          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+            <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </>
+    </LanguageProvider>
   )
 }
 

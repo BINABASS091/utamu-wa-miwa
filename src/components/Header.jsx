@@ -2,24 +2,27 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { SugarCaneIcon } from './BrandIcons'
-
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Menu', path: '/menu' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Contact', path: '/contact' },
-]
+import LanguageSwitcher from './LanguageSwitcher'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function Header({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const navLinks = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.menu'), path: '/menu' },
+    { name: t('nav.gallery'), path: '/gallery' },
+    { name: t('nav.contact'), path: '/contact' },
+  ]
 
   return (
     <header
@@ -51,18 +54,18 @@ export default function Header({ darkMode, setDarkMode }) {
               <NavLink
                 key={link.path}
                 to={link.path}
-                end={link.path === '/'}
                 className={({ isActive }) =>
-                  `font-medium text-sm transition-colors duration-200 hover:text-green-600 dark:hover:text-green-400 ${
+                  `text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-green-600 dark:text-green-400 border-b-2 border-green-500'
-                      : 'text-gray-700 dark:text-gray-200'
+                      ? 'text-green-600 dark:text-green-400'
+                      : 'text-gray-700 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400'
                   }`
                 }
               >
                 {link.name}
               </NavLink>
             ))}
+            <LanguageSwitcher />
             <Link
               to="/contact"
               className="ml-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
@@ -80,6 +83,7 @@ export default function Header({ darkMode, setDarkMode }) {
 
           {/* Mobile controls */}
           <div className="flex md:hidden items-center gap-3">
+            <LanguageSwitcher />
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-full text-gray-600 dark:text-gray-300"

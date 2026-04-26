@@ -4,6 +4,7 @@ import { WhatsAppIcon, SugarCaneIcon } from '../components/BrandIcons'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1773155008/sugar2_is9tf8.jpg'
 
@@ -11,44 +12,44 @@ const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_a
 const featuredProducts = [
   {
     id: 1,
-    name: 'Classic Sugarcane Juice',
-    desc: 'Pure, freshly pressed sugarcane â€” sweet, cool, and natural.',
-    badge: 'Best Seller',
+    nameKey: 'product.classic',
+    descKey: 'product.classic.desc',
+    badgeKey: 'product.badge.popular',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
   },
   {
     id: 2,
-    name: 'Ginger Sugarcane Blend',
-    desc: 'A spicy kick of fresh ginger with sweet sugarcane juice.',
-    badge: 'Popular',
+    nameKey: 'product.ginger',
+    descKey: 'product.ginger.desc',
+    badgeKey: null,
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
   },
   {
     id: 3,
-    name: 'Lemon Sugarcane Twist',
-    desc: 'Fresh squeezed lemon juice mixed with sweet sugarcane for a sharp citrus kick.',
-    badge: null,
+    nameKey: 'product.lemon',
+    descKey: 'product.lemon.desc',
+    badgeKey: null,
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
   },
   {
     id: 4,
-    name: 'Mint Sugarcane Twist',
-    desc: 'Cooling mint leaves blended with fresh sugarcane for a refreshing burst of flavor.',
-    badge: 'New',
+    nameKey: 'product.mint',
+    descKey: 'product.mint.desc',
+    badgeKey: 'product.badge.new',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
   },
   {
     id: 5,
-    name: 'Passion Sugarcane Twist',
-    desc: 'Tropical passion fruit mixed with sugarcane for an exotic, sweet-tart experience.',
-    badge: 'New',
+    nameKey: 'product.passion',
+    descKey: 'product.passion.desc',
+    badgeKey: 'product.badge.new',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
   },
   {
     id: 6,
-    name: 'Cocumber Sugarcane Twist',
-    desc: 'Fresh cucumber blended with sugarcane for a hydrating, cooling, and crisp taste.',
-    badge: 'New',
+    nameKey: 'product.cucumber',
+    descKey: 'product.cucumber.desc',
+    badgeKey: 'product.badge.new',
     image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
   },
 ]
@@ -118,6 +119,8 @@ const sliderSettings = {
 }
 
 export default function Home() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-16 overflow-x-hidden">
 
@@ -137,15 +140,11 @@ export default function Home() {
               </span>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-white leading-[1.1] mb-6">
-                The Taste of{' '}
-                <span className="text-yellow-400">Fresh</span>
-                <br />
-                <span className="text-green-400">Sugarcane</span>
+                {t('home.hero.title')}
               </h1>
 
               <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                <strong className="text-white">Utamu wa Miwa</strong> â€” experience the authentic
-                taste of freshly pressed Zanzibari sugarcane juice. Pure, natural, and bursting with energy.
+                {t('home.hero.description')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
@@ -153,7 +152,7 @@ export default function Home() {
                   to="/menu"
                   className="px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-extrabold rounded-full transition-all duration-200 hover:shadow-2xl hover:-translate-y-1 inline-flex items-center justify-center gap-2 text-base"
                 >
-                  See Our Menu <ArrowRight size={18} />
+                  {t('home.hero.cta2')} <ArrowRight size={18} />
                 </Link>
                 <a
                   href="https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20sugarcane%20juice."
@@ -302,13 +301,13 @@ export default function Home() {
       <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">Our Menu</span>
+            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">{t('home.menu.title')}</span>
             <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              Featured Flavors
+              {t('home.menu.subtitle')}
             </h2>
             <div className="w-16 h-1 bg-yellow-400 rounded-full mx-auto mt-4" />
             <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">
-              All juices freshly pressed on demand â€” choose your flavor, enjoy the freshness.
+              {t('home.menu.description')}
             </p>
           </div>
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 md:gap-8">
@@ -320,22 +319,22 @@ export default function Home() {
                 <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
-                    alt={product.name}
+                    alt={t(product.nameKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  {product.badge && (
+                  {product.badgeKey && (
                     <span className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-extrabold rounded-full shadow">
-                      {product.badge}
+                      {t(product.badgeKey)}
                     </span>
                   )}
                 </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">{product.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 mb-5">{product.desc}</p>
+                  <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">{t(product.nameKey)}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 mb-5">{t(product.descKey)}</p>
                   <div className="flex justify-end">
                     <a
-                      href={`https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(product.name)}`}
+                      href={`https://wa.me/255718622621?text=Hello!%20I%20would%20like%20to%20order%20${encodeURIComponent(t(product.nameKey))}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-full transition-colors shadow hover:shadow-lg"

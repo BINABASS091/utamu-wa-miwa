@@ -1,43 +1,52 @@
 import { useState, useEffect, useCallback } from 'react'
 import { X, ZoomIn, ChevronLeft, ChevronRight, Leaf } from 'lucide-react'
 import { WhatsAppIcon } from '../components/BrandIcons'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const galleryItems = [
   {
     id: 1,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
-    alt: 'Lemon flavor sugarcane juice',
-    label: 'Sugarcane',
-    tag: 'Classic',
+    altKey: 'product.lemon',
+    labelKey: 'gallery.tag.classic',
+    tagKey: 'gallery.tag.classic',
     featured: true,
   },
   {
     id: 2,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
-    alt: 'Ginger flavor sugarcane juice',
-    label: 'Sugarcane',
-    tag: 'Blended',
+    altKey: 'product.ginger',
+    labelKey: 'gallery.tag.blended',
+    tagKey: 'gallery.tag.blended',
   },
   {
     id: 3,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
-    alt: 'Mint flavor sugarcane juice',
-    label: 'Sugarcane',
-    tag: 'Blended',
+    altKey: 'product.mint',
+    labelKey: 'gallery.tag.blended',
+    tagKey: 'gallery.tag.blended',
   },
   {
     id: 4,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
-    alt: 'Passion flavor sugarcane juice',
-    label: 'Passion',
-    tag: 'Blended',
+    altKey: 'product.passion',
+    labelKey: 'gallery.tag.blended',
+    tagKey: 'gallery.tag.blended',
   },
   {
     id: 5,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
-    alt: 'Cocumber flavor sugarcane juice',
-    label: 'Cocumber',
-    tag: 'Blended',
+    altKey: 'product.cucumber',
+    labelKey: 'gallery.tag.blended',
+    tagKey: 'gallery.tag.blended',
+  },
+  {
+    id: 6,
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773143147/sugarcane_hvtocf.jpg',
+    altKey: 'product.classic',
+    labelKey: 'gallery.tag.classic',
+    tagKey: 'gallery.tag.classic',
+    featured: true,
   },
 ]
 
@@ -48,10 +57,12 @@ const gridSpan = [
   '',
   '',
   '',
+  '',
 ]
 
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
+  const { t } = useLanguage()
 
   const prev = useCallback(() =>
     setLightboxIndex((i) => (i > 0 ? i - 1 : galleryItems.length - 1)), [])
@@ -81,13 +92,13 @@ export default function Gallery() {
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-green-400/10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
         <div className="relative max-w-3xl mx-auto px-4">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold rounded-full uppercase tracking-widest mb-6">
-            <Leaf size={12} /> Our Gallery
+            <Leaf size={12} /> {t('gallery.title')}
           </span>
           <h1 className="text-5xl sm:text-6xl font-extrabold font-heading text-white mt-2 mb-4 leading-tight">
-            A Feast for the <span className="text-yellow-400">Eyes</span>
+            {t('gallery.subtitle')}
           </h1>
           <p className="text-green-200 text-lg">
-            From farm to glass — our journey in pictures.
+            {t('gallery.description')}
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
@@ -127,7 +138,7 @@ export default function Gallery() {
                 {/* Photo */}
                 <img
                   src={item.src}
-                  alt={item.alt}
+                  alt={t(item.altKey)}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -136,26 +147,22 @@ export default function Gallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                 {/* Tag badge (top-left) */}
-                <span className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-extrabold rounded-full shadow-lg">
-                  {item.tag}
-                </span>
-
-                {/* Featured badge (top-right) */}
-                {item.featured && (
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-bold rounded-full">
-                    Featured
+                {item.tagKey && (
+                  <span className="absolute top-4 left-4 px-3 py-1 bg-white/90 text-green-700 text-xs font-bold rounded-full shadow">
+                    {t(item.tagKey)}
                   </span>
                 )}
 
-                {/* Bottom label */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
-                  <div>
-                    <p className="text-white font-extrabold font-heading text-lg leading-tight drop-shadow">{item.label}</p>
-                    <p className="text-green-300 text-xs mt-0.5">{item.alt}</p>
-                  </div>
-                  <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ZoomIn size={16} className="text-white" />
-                  </div>
+                {/* Featured badge (top-right) */}
+                {item.featured && (
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-yellow-400 text-gray-900 text-xs font-bold rounded-full shadow">
+                    {t('gallery.featured')}
+                  </span>
+                )}
+
+                {/* Label (bottom) */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-white font-bold text-sm">{t(item.labelKey)}</p>
                 </div>
               </div>
             ))}
