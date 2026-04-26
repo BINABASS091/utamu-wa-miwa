@@ -311,13 +311,13 @@ export default function Home() {
               All juices freshly pressed on demand â€” choose your flavor, enjoy the freshness.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 md:gap-8">
             {featuredProducts.map((product) => (
               <div
                 key={product.id}
                 className="group bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col"
               >
-                <div className="relative h-56 sm:h-60 md:h-64 lg:h-72 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
                     alt={product.name}

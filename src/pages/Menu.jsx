@@ -123,14 +123,14 @@ export default function Menu() {
       {/* Products grid */}
       <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xs:gap-5 sm:gap-6">
             {filtered.map((product) => (
               <div
                 key={product.id}
                 className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
               >
                 {/* Product image */}
-                <div className="relative h-48 sm:h-52 md:h-56 lg:h-60 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
                     alt={product.name}
