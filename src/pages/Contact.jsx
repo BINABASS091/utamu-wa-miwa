@@ -14,7 +14,7 @@ export default function Contact() {
           <h1 className="text-5xl font-extrabold font-heading text-white mt-3 mb-4">
             {t('contact.hero.subtitle')}
           </h1>
-          <p className="text-green-200 text-lg">
+          <p className="text-green-200 text-lg whitespace-nowrap overflow-hidden text-ellipsis">
             {t('contact.hero.description')}
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">{t('contact.info.location')}</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm whitespace-nowrap overflow-hidden text-ellipsis">
                       {t('contact.info.location.address')}
                     </p>
                   </div>
@@ -114,25 +114,11 @@ export default function Contact() {
                   <div>
                     <p className="font-bold text-gray-900 dark:text-white text-lg">{t('contact.whatsapp.title')}</p>
                     <p className="text-green-600 dark:text-green-400 text-sm font-medium">+255 718 622 621</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{t('contact.whatsapp.description')}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1 whitespace-nowrap overflow-hidden text-ellipsis">{t('contact.whatsapp.description')}</p>
                   </div>
                 </a>
 
-                {/* Phone card */}
-                <a
-                  href="tel:+255718622621"
-                  className="flex items-center gap-5 p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-lg transition-all duration-200 hover:-translate-y-1 group"
-                >
-                  <div className="w-14 h-14 rounded-full bg-gray-800 dark:bg-gray-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Phone className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 dark:text-white text-lg">{t('contact.phone.title')}</p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm font-medium">+255 718 622 621</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">{t('contact.phone.description')}</p>
-                  </div>
-                </a>
-              </div>
+                              </div>
             </div>
           </div>
         </div>

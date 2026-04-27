@@ -146,7 +146,7 @@ export default function Home() {
                 {t('home.hero.title')}
               </h1>
 
-              <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+              <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 whitespace-nowrap overflow-hidden text-ellipsis">
                 {t('home.hero.description')}
               </p>
 
@@ -269,7 +269,7 @@ export default function Home() {
                 <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mt-3 mb-6 leading-tight">
                   {t('about.title')}
                 </h2>
-                <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg">
+                <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg whitespace-nowrap overflow-hidden text-ellipsis">
                   {t('about.description')}
                 </p>
                 <Link
@@ -287,7 +287,7 @@ export default function Home() {
                     loading="lazy"
                     className="w-32 h-auto object-contain mx-auto mb-4 drop-shadow-lg"
                   />
-                  <p className="text-white text-lg font-semibold font-heading italic">
+                  <p className="text-white text-lg font-semibold font-heading italic whitespace-nowrap overflow-hidden text-ellipsis">
                     "Fresh from farm to glass"
                   </p>
                   <p className="text-green-300 text-sm mt-2">Every cup, every day, with love.</p>

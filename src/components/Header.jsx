@@ -132,7 +132,6 @@ export default function Header({ darkMode, setDarkMode }) {
             <div className="flex items-center gap-2">
               {/* Desktop actions */}
               <div className="hidden lg:flex items-center gap-3">
-                <LanguageSwitcher />
                 <CartIcon />
                 <Link
                   to="/contact"
@@ -152,7 +151,6 @@ export default function Header({ darkMode, setDarkMode }) {
 
               {/* Mobile controls */}
               <div className="flex lg:hidden items-center gap-2">
-                <LanguageSwitcher />
                 <CartIcon />
                 <button
                   onClick={() => setDarkMode(!darkMode)}
@@ -212,6 +210,10 @@ export default function Header({ darkMode, setDarkMode }) {
         </div>
       )}
 
+          {/* Floating Language Button */}
+          <div className="fixed bottom-6 right-6 z-40">
+            <LanguageSwitcher />
+          </div>
           </>
   )
 }
