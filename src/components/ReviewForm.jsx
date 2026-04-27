@@ -12,9 +12,7 @@ export default function ReviewForm({
   const [formData, setFormData] = useState({
     rating: 0,
     title: '',
-    content: '',
-    name: '',
-    email: ''
+    content: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState({})
@@ -65,16 +63,6 @@ export default function ReviewForm({
       newErrors.content = 'Please enter your review'
     }
     
-    if (!formData.name.trim()) {
-      newErrors.name = 'Please enter your name'
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Please enter your email'
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
-    }
-    
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -104,9 +92,7 @@ export default function ReviewForm({
       setFormData({
         rating: 0,
         title: '',
-        content: '',
-        name: '',
-        email: ''
+        content: ''
       })
       
     } catch (error) {
@@ -189,47 +175,7 @@ export default function ReviewForm({
         </div>
 
         
-        {/* Name and Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Your Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Miwa ya Zanzibar"
-              className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-              }`}
-            />
-            {errors.name && (
-              <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="utamuwamiwa.zanzibar.2026@gmail.com"
-              className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-              }`}
-            />
-            {errors.email && (
-              <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-            )}
-          </div>
-        </div>
-
+        
         {/* Submit Buttons */}
         <div className="flex gap-3 pt-4">
           <button
