@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { WhatsAppIcon } from '../components/BrandIcons'
-import { Filter, Plus } from 'lucide-react'
+import { Filter, Plus, Star } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
 import { formatPrice, getPriceCategories } from '../utils/currency'
+import ProductReviews from '../components/ProductReviews'
 
-const categoryKeys = ['menu.all', 'menu.classic', 'menu.blended', 'menu.tropical']
+const categoryKeys = ['menu.all', 'menu.classic', 'menu.blended', 'menu.tropical', 'menu.addons']
 
 const menuItems = [
   {
@@ -102,9 +103,9 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145841/ice_il0wab.jpg 800w'
     ],
     descKey: 'product.extraIce.desc',
-    sizes: [],
+    sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-blue-300 to-cyan-400',
-    badge: null,
+    badgeKey: null,
   },
 ]
 
@@ -116,8 +117,8 @@ export default function Menu() {
   const priceCategories = getPriceCategories()
 
   const filtered = activeCategory === 'All'
-    ? products
-    : products.filter((p) => p.category === activeCategory)
+    ? menuItems
+    : menuItems.filter((p) => p.categoryKey === activeCategory)
 
   return (
     <div className="pt-16">
@@ -167,11 +168,11 @@ export default function Menu() {
                 className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
               >
                 {/* Product image */}
-                <div className="relative h-80 xs:h-84 sm:h-88 md:h-92 lg:h-96 xl:h-[36rem] flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 flex-shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={product.image}
                     srcSet={product.imageSet}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
                     alt={t(product.nameKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
@@ -196,6 +197,28 @@ export default function Menu() {
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed flex-1">
                     {t(product.descKey)}
                   </p>
+                  {/* Rating Display */}
+                  <div className="flex items-center gap-2 text-xs">
+                    <div className="flex">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          className={`w-3 h-3 ${
+                            star <= 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-gray-500 dark:text-gray-400">
+                      4.5 (12 reviews)
+                    </span>
+                    <a
+                      href="/reviews"
+                      className="text-green-600 hover:text-green-700 font-medium"
+                    >
+                      {t('reviews.writeReview')}
+                    </a>
+                  </div>
                   {product.sizes.length > 0 && (
                     <div className="mb-3">
                       <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">{t('price.selectPrice')}:</p>

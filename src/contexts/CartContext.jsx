@@ -261,9 +261,13 @@ export const CartProvider = ({ children }) => {
     message += `📝 *Order Details:*\n`
     
     state.items.forEach((item, index) => {
-      message += `\n${index + 1}. *${item.nameKey}* (${item.size})\n`
+      const priceCategory = item.size === 'small' ? '500 TZS' : item.size === 'medium' ? '1,000 TZS' : '4,000 TZS'
+      const sizeLabel = item.size === 'small' ? 'Small Glass' : item.size === 'medium' ? 'Medium Glass' : 'Large Bottle'
+      message += `\n${index + 1}. *${item.nameKey}*\n`
+      message += `   Size: ${sizeLabel}\n`
+      message += `   Price Category: ${priceCategory}\n`
       message += `   Quantity: ${item.quantity}\n`
-      message += `   Price: ${formatPriceForWhatsApp(item.price)} each\n`
+      message += `   Unit Price: ${formatPriceForWhatsApp(item.price)}\n`
       message += `   Subtotal: ${formatPriceForWhatsApp(item.price * item.quantity)}\n`
     })
 

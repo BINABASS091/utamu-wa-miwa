@@ -1,10 +1,10 @@
-﻿import { Link } from 'react-router-dom'
+﻿import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Star, ArrowRight, Droplet, Zap, Heart, Award, Leaf, Plus } from 'lucide-react'
 import { WhatsAppIcon, SugarCaneIcon } from '../components/BrandIcons'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
 import { formatPrice, getPriceCategories } from '../utils/currency'
@@ -77,55 +77,32 @@ const featuredProducts = [
   },
 ]
 
-// --- Testimonials data ---
-const testimonials = [
-  {
-    id: 1,
-    text: 'Best sugarcane juice I have ever tasted! So fresh and natural. I come here every morning!',
-    rating: 5,
-  },
-  {
-    id: 2,
-    text: 'The ginger blend is absolutely amazing. Perfect balance of sweet and spicy. Highly recommend!',
-    rating: 5,
-  },
-  {
-    id: 3,
-    text: 'Visited Zanzibar and this was a highlight. Authentic taste, clean preparation, love it!',
-    rating: 5,
-  },
-  {
-    id: 4,
-    text: 'Refreshing and very affordable. The classic is my favorite â€” so cooling in the heat!',
-    rating: 5,
-  },
-]
 
 // --- Why Choose Us data ---
 const features = [
   {
     icon: <Droplet size={28} />,
-    title: '100% Fresh',
-    desc: 'Pressed fresh in front of you â€” no preservatives, no artificial flavors.',
+    titleKey: 'home.whyUs.fresh.title',
+    descKey: 'home.whyUs.fresh.desc',
     color: 'bg-green-500',
   },
   {
     icon: <Leaf size={28} />,
-    title: 'Local Sugarcane',
-    desc: 'Sourced directly from local Zanzibari farmers for maximum freshness.',
+    titleKey: 'home.whyUs.local.title',
+    descKey: 'home.whyUs.local.desc',
     color: 'bg-emerald-500',
   },
   {
     icon: <Zap size={28} />,
-    title: 'Natural Energy',
-    desc: 'The perfect natural energy boost â€” pure cane sugar, no caffeine.',
+    titleKey: 'home.whyUs.energy.title',
+    descKey: 'home.whyUs.energy.desc',
     color: 'bg-yellow-500',
   },
   {
     icon: <Heart size={28} />,
-    title: 'Made with Love',
-    desc: 'Every cup prepared with passion and care by our local team.',
-    color: 'bg-red-400',
+    titleKey: 'home.whyUs.love.title',
+    descKey: 'home.whyUs.love.desc',
+    color: 'bg-red-500',
   },
 ]
 
@@ -253,24 +230,24 @@ export default function Home() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">Why Us?</span>
+            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">{t('home.whyUs.title')}</span>
             <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              What Makes Us Special
+              {t('home.whyUs.subtitle')}
             </h2>
             <div className="w-16 h-1 bg-yellow-400 rounded-full mx-auto mt-4" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((f) => (
               <div
-                key={f.title}
+                key={f.titleKey}
                 className="group relative bg-gray-50 dark:bg-gray-800 rounded-3xl p-7 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-green-600/0 to-green-600/0 group-hover:from-green-600/5 group-hover:to-transparent transition-all duration-300 rounded-3xl" />
                 <div className={`w-14 h-14 ${f.color} rounded-2xl flex items-center justify-center text-white mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {f.icon}
                 </div>
-                <h3 className="font-bold font-heading text-gray-900 dark:text-white text-lg mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold font-heading text-gray-900 dark:text-white text-lg mb-2">{t(f.titleKey)}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{t(f.descKey)}</p>
               </div>
             ))}
           </div>
@@ -290,12 +267,10 @@ export default function Home() {
               <div className="flex-1 text-center lg:text-left">
                 <span className="text-yellow-400 font-bold text-sm uppercase tracking-widest">{t('about.hero.subtitle')}</span>
                 <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mt-3 mb-6 leading-tight">
-                  Born from the Heart<br />of Zanzibar
+                  {t('about.title')}
                 </h2>
                 <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg">
-                  Utamu wa Miwa started as a small street vendor in Stone Town, Zanzibar. With fresh
-                  sugarcane sourced directly from local farms, we press every cup by hand â€” delivering
-                  the pure, natural taste that Zanzibaris have loved for generations.
+                  {t('about.description')}
                 </p>
                 <Link
                   to="/about"
@@ -327,13 +302,13 @@ export default function Home() {
       <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">{t('home.menu.title')}</span>
+            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">{t('menu.title')}</span>
             <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              {t('home.menu.subtitle')}
+              {t('menu.subtitle')}
             </h2>
             <div className="w-16 h-1 bg-yellow-400 rounded-full mx-auto mt-4" />
             <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">
-              {t('home.menu.description')}
+              {t('menu.description')}
             </p>
           </div>
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 md:gap-8">
@@ -382,42 +357,13 @@ export default function Home() {
               to="/menu"
               className="inline-flex items-center gap-2 px-10 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full transition-all duration-200 hover:shadow-xl hover:-translate-y-1 text-lg"
             >
-              View Full Menu <ArrowRight size={18} />
+              {t('home.viewFullMenu')} <ArrowRight size={18} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="py-24 bg-white dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-widest">Reviews</span>
-            <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-gray-900 dark:text-white mt-2">
-              What Our Customers Say
-            </h2>
-            <div className="w-16 h-1 bg-yellow-400 rounded-full mx-auto mt-4" />
-          </div>
-          <Slider {...sliderSettings}>
-            {testimonials.map((t) => (
-              <div key={t.id} className="px-3">
-                <div className="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-800 rounded-3xl p-7 shadow-md border border-green-100 dark:border-gray-700">
-                  <div className="text-5xl text-green-300 dark:text-green-700 font-serif leading-none mb-3">"</div>
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="text-yellow-400" size={16} fill="currentColor" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed italic">
-                    {t.text}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </section>
-
+      
       {/* ===== CTA / WHATSAPP SECTION ===== */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-green-800 to-green-900">
         <div className="absolute inset-0 opacity-10">
@@ -429,7 +375,7 @@ export default function Home() {
             {t('common.order')}
           </span>
           <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mb-4">
-            Ready for a Refreshing Sip?
+            {t('home.cta.title')}
           </h2>
           <p className="text-green-200 text-lg mb-10 max-w-lg mx-auto">
             {t('home.cta.description')}

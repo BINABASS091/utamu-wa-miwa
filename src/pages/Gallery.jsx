@@ -86,51 +86,17 @@ const galleryItems = [
   },
 ]
 
-// Enhanced image component with lazy loading
+// Simplified image component for debugging
 const LazyImage = ({ src, srcSet, alt, className, onLoad }) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(false)
-  const imgRef = useRef()
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div ref={imgRef} className="relative">
-      {!isLoaded && isInView && (
-        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-          <Loader2 className="w-8 h-8 text-gray-400 animate-spin" />
-        </div>
-      )}
-      {isInView && (
-        <img
-          src={src}
-          srcSet={srcSet}
-          alt={alt}
-          className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-          onLoad={() => {
-            setIsLoaded(true)
-            onLoad?.()
-          }}
-          loading="lazy"
-        />
-      )}
-    </div>
+    <img
+      src={src}
+      srcSet={srcSet}
+      alt={alt}
+      className={className}
+      onLoad={onLoad}
+      loading="lazy"
+    />
   )
 }
 
@@ -213,11 +179,11 @@ export default function Gallery() {
       {/* ===== BENTO GALLERY GRID ===== */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-[320px] xs:auto-rows-[336px] sm:auto-rows-[352px] md:auto-rows-[368px] lg:auto-rows-[384px] xl:auto-rows-[576px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {galleryItems.map((item, idx) => (
               <div
                 key={item.id}
-                className={`group relative overflow-hidden rounded-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${gridSpan[idx]}`}
+                className="group relative overflow-hidden rounded-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-64"
                 onClick={() => setLightboxIndex(idx)}
               >
                 {/* Photo */}

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { logTranslationValidation } from '../utils/translationValidator'
 
 // Create context
 const LanguageContext = createContext()
@@ -31,9 +32,11 @@ export const LanguageProvider = ({ children }) => {
       en: {
         // Navigation
         'nav.home': 'Home',
-        'nav.about': 'About Us',
-        'nav.menu': 'Our Menu',
+        'nav.about': 'About',
+        'nav.menu': 'Menu',
         'nav.gallery': 'Gallery',
+        'nav.storeLocator': 'Store Locator',
+        'nav.reviews': 'Reviews',
         'nav.contact': 'Contact',
         
         // Home Page
@@ -55,24 +58,47 @@ export const LanguageProvider = ({ children }) => {
         'home.stats.daily': 'Fresh Daily',
         
         'home.menu.title': 'Our Menu',
-        'home.menu.subtitle': 'Fresh Juice Menu',
-        'home.menu.description': 'All juices freshly pressed on demand — choose your flavor, enjoy the freshness.',
-        'home.menu.customOrders': 'Custom orders welcome!',
-        'home.menu.customOrdersDesc': 'Want a special blend? Contact us on WhatsApp',
+        
+        // Why Us Section
+        'home.whyUs.title': 'Why Us?',
+        'home.whyUs.subtitle': 'What Makes Us Special',
+        'home.whyUs.fresh.title': '100% Fresh',
+        'home.whyUs.fresh.desc': 'Pressed fresh in front of you — no preservatives, no artificial flavors.',
+        'home.whyUs.local.title': 'Local Sugarcane',
+        'home.whyUs.local.desc': 'Sourced directly from local Zanzibari farmers for maximum freshness.',
+        'home.whyUs.energy.title': 'Natural Energy',
+        'home.whyUs.energy.desc': 'The perfect natural energy boost — pure cane sugar, no caffeine.',
+        'home.whyUs.love.title': 'Made with Love',
+        'home.whyUs.love.desc': 'Every cup prepared with passion and care by our local team.',
+        'home.cta.title': 'Ready for a Refreshing Sip?',
+        'home.viewFullMenu': 'View Full Menu',
+        'home.reviews.title': 'Reviews',
+        'home.reviews.subtitle': 'What Our Customers Say',
+        'customer.name': 'bin abass',
+        'about.title': 'Born from the Heart of Zanzibar',
+        'about.description': 'Utamu wa Miwa started as a small street vendor in Stone Town, Zanzibar. With fresh sugarcane sourced directly from local farms, we press every cup by hand — delivering the pure, natural taste that Zanzibaris have loved for generations.',
+        'header.tagline': 'Fresh from farm to glass',
+        'nav.more': 'More',
+        'menu.customOrders': 'Custom orders welcome!',
+        'menu.customOrdersDesc': 'Want a special blend? Contact us on WhatsApp',
+        'menu.addons': 'Add-ons',
+        'menu.addons.desc': 'Enhance your drink with these extras',
         
         // Products
         'product.classic': 'Classic Sugarcane Juice',
         'product.ginger': 'Ginger Sugarcane Blend',
         'product.lemon': 'Lemon Sugarcane Twist',
         'product.mint': 'Mint Sugarcane Twist',
-        'product.passion': 'Passion Sugarcane Twist',
+        'product.passion': 'Passion Fruit',
         'product.cucumber': 'Cucumber Sugarcane Twist',
+        'product.extraIce': 'Extra Ice',
+        'product.extraIce.desc': 'Fresh ice cubes for extra refreshment',
         
         'product.classic.desc': 'Pure, refreshing sugarcane juice the way nature intended.',
         'product.ginger.desc': 'Spicy ginger meets sweet sugarcane for an invigorating blend.',
         'product.lemon.desc': 'Zesty lemon adds a refreshing citrus twist to classic sugarcane.',
         'product.mint.desc': 'Cool mint creates a perfectly refreshing and soothing drink.',
-        'product.passion.desc': 'Tropical passion fruit adds exotic sweetness to our fresh juice.',
+        'product.passion.desc': 'Tropical passion fruit with sugarcane juice',
         'product.cucumber.desc': 'Crisp cucumber provides extra hydration and freshness.',
         
         'product.badge.new': 'New',
@@ -92,8 +118,6 @@ export const LanguageProvider = ({ children }) => {
         'menu.subtitle': 'Fresh Juices',
         'menu.description': 'All our juices are freshly pressed to order using the finest locally grown sugarcane.',
         'menu.all': 'All',
-        'menu.customOrders': 'Custom orders welcome!',
-        'menu.customOrdersDesc': 'Want a special blend? Contact us on WhatsApp',
         'menu.customOrder': 'Custom Order',
         'menu.classic': 'Classic',
         'menu.blended': 'Blended',
@@ -207,7 +231,59 @@ export const LanguageProvider = ({ children }) => {
         'price.largePrice': '4,000 TZS',
         'price.smallGlass': 'Small - 500 TZS',
         'price.mediumGlass': 'Medium - 1,000 TZS',
-        'price.largeBottle': 'Large - 4,000 TZS'
+        'price.largeBottle': 'Large - 4,000 TZS',
+        
+        // Store Locator
+        'storeLocator.hero.title': 'Find Our Stores',
+        'storeLocator.hero.subtitle': 'Visit Us in Zanzibar',
+        'storeLocator.hero.description': 'Discover our convenient locations across Zanzibar and enjoy fresh sugarcane juice near you.',
+        'storeLocator.findNearby': 'Find Nearby Stores',
+        'storeLocator.searchPlaceholder': 'Search stores by name or location...',
+        'storeLocator.filter': 'Filter',
+        'storeLocator.storesNearYou': 'Stores Near You',
+        'storeLocator.mainStore': 'Main Store',
+        'storeLocator.directions': 'Directions',
+        'storeLocator.call': 'Call',
+        'storeLocator.mapTitle': 'Store Locations',
+        'storeLocator.resetView': 'Reset View',
+        'stores.stoneTown': 'Utamu wa Miwa - Stone Town',
+        'stores.stoneTown.address': 'MKwapa Street, Stone Town',
+        'stores.nungwi': 'Utamu wa Miwa - Nungwi',
+        'stores.nungwi.address': 'Nungwi Beach Road, Nungwi',
+        'stores.paje': 'Utamu wa Miwa - Paje',
+        'stores.paje.address': 'Paje Beach Road, Paje',
+        'stores.kendwa': 'Utamu wa Miwa - Kendwa',
+        'stores.kendwa.address': 'Kendwa Beach Road, Kendwa',
+        'storeLocator.features.delivery': 'Delivery',
+        'storeLocator.features.wifi': 'WiFi',
+        'storeLocator.features.parking': 'Parking',
+        'storeLocator.features.seating': 'Seating',
+        'storeLocator.features.beach_view': 'Beach View',
+        'storeLocator.features.kitesurfing_area': 'Kitesurfing Area',
+        'storeLocator.features.sunset_view': 'Sunset View',
+        
+        // Reviews
+        'reviews.hero.title': 'Customer Reviews',
+        'reviews.hero.subtitle': 'What Our Customers Say',
+        'reviews.hero.description': 'Read authentic reviews from our satisfied customers and share your own experience.',
+        'reviews.writeReview': 'Write a Review',
+        'reviews.basedOn': 'Based on',
+        'reviews.reviews': 'reviews',
+        'reviews.ratingDistribution': 'Rating Distribution',
+        'reviews.verifiedPurchases': 'verified purchases',
+        'reviews.fiveStarReviews': 'five-star reviews',
+        'reviews.helpfulVotes': 'helpful votes',
+        'reviews.searchPlaceholder': 'Search reviews...',
+        'reviews.allRatings': 'All Ratings',
+        'reviews.stars': 'stars',
+        'reviews.star': 'star',
+        'reviews.mostRecent': 'Most Recent',
+        'reviews.mostHelpful': 'Most Helpful',
+        'reviews.highestRated': 'Highest Rated',
+        'reviews.customerReviews': 'Customer Reviews',
+        'reviews.noReviews': 'No reviews yet',
+        'reviews.beFirstToReview': 'Be the first to share your experience!',
+        'reviews.writeFirstReview': 'Write the First Review'
       },
       
       sw: {
@@ -216,6 +292,8 @@ export const LanguageProvider = ({ children }) => {
         'nav.about': 'Kuhusu Sisi',
         'nav.menu': 'Menyu Yetu',
         'nav.gallery': 'Gallery',
+        'nav.storeLocator': 'Pata Maduka',
+        'nav.reviews': 'Maoni',
         'nav.contact': 'Wasiliana',
         
         // Home Page
@@ -237,8 +315,27 @@ export const LanguageProvider = ({ children }) => {
         'home.stats.daily': 'Freshi Kila Siku',
         
         'home.menu.title': 'Menyu Yetu',
-        'home.menu.subtitle': 'Flava Zilizochaguliwa',
-        'home.menu.description': 'Maji yote freshi yanayosukuliwa kwa agizo — chagua flava yako, ufurahie freshi.',
+        
+        // Why Us Section
+        'home.whyUs.title': 'Kwa Nini Sisi?',
+        'home.whyUs.subtitle': 'Kinachotufanya Tukupe Kipekee',
+        'home.whyUs.fresh.title': '100% Freshi',
+        'home.whyUs.fresh.desc': 'Imesukumwa freshi mbele yako — hakuna preservatives, hakina ladha za bandia.',
+        'home.whyUs.local.title': 'Miwa ya Ndani',
+        'home.whyUs.local.desc': 'Imetengenezwa moja kwa moja kwa wakulima wa Zanzibar wa karibu kwa freshi zaidi.',
+        'home.whyUs.energy.title': 'Nishati ya Asili',
+        'home.whyUs.energy.desc': 'Nishati kamili ya asili — sukari tupu ya miwa, hakuna kafeini.',
+        'home.whyUs.love.title': 'Imetengenezwa kwa Pendo',
+        'home.whyUs.love.desc': 'Kila kikombe kinatengenezwa kwa shauku na utunzaji na timu yetu ya karibu.',
+        'home.cta.title': 'Umejiandaa Kwa Kunywa Kitu Freshi?',
+        'home.viewFullMenu': 'Ona Menyu Kamili',
+        'home.reviews.title': 'Mapitio',
+        'home.reviews.subtitle': 'Wateja Wetu Wanachosema',
+        'customer.name': 'bin abass',
+        'about.title': 'Imezaliwa kwa Moyo wa Zanzibar',
+        'about.description': 'Utamu wa Miwa ilianza kama muuzaji mdogo wa barabarani mjini Stone Town, Zanzibar. Kwa miwa freshi kutoka mashambani moja kwa moja, tunasukuma kila kikombe kwa mkono — kutoa ladha safi ya asili ambayo Wazanzibari wameipenda kwa vizazi.',
+        'header.tagline': 'Freshi kutoka shambani kwa glasi',
+        'nav.more': 'Zaidi',
         
         // Products
         'product.classic': 'Maji ya Miwa ya Kiasili',
@@ -247,6 +344,8 @@ export const LanguageProvider = ({ children }) => {
         'product.mint': 'Mchanganyiko wa Miwa na Mint',
         'product.passion': 'Mchanganyiko wa Miwa na Matunda ya Passion',
         'product.cucumber': 'Mchanganyiko wa Miwa na Tangweni',
+        'product.extraIce': 'Barafu ya Ziada',
+        'product.extraIce.desc': 'Barafu freshi za kuongeza uchu',
         
         'product.classic.desc': 'Maji ya miwa freshi na safi kama mungu alivyo takasifu.',
         'product.ginger.desc': 'Tangawizi kali inakutana na miwa tamu kwa mchanganyiko wa kusisimua.',
@@ -269,16 +368,20 @@ export const LanguageProvider = ({ children }) => {
         
         // Menu Page
         'menu.title': 'Menyu Yetu',
-        'menu.subtitle': 'Maji Freshi',
-        'menu.description': 'Maji yetu yote freshi yanayosukuliwa kwa agizo kutumia miwa bora zaidi inayolimwa eneo hili.',
-        'menu.all': 'Zote',
+        'menu.subtitle': 'Menyu ya Maji Freshi',
+        'menu.description': 'Maji yote yanayotengenezwa freshi agizo — chagua ladha yako, ufurahie ubunifu.',
         'menu.customOrders': 'Maagizo maalum yanakaribishwa!',
-        'menu.customOrdersDesc': 'Unataka mchanganyiko maalum? Wasiliana nasi kwenye WhatsApp',
+        'menu.customOrdersDesc': 'Unataka mchanganyiko maalum? Wasiliana nasi kupitia WhatsApp',
+        'menu.addons': 'Viongizo',
+        'menu.addons.desc': 'Boresha kinywaji chako na hizi ziada',
+        'menu.extraIce': 'Barafu ya Ziada',
+        'menu.extraIce.desc': 'Ongeza barafu ya ziada kwenye kinywaji chako',
         'menu.customOrder': 'Agizo Maalum',
         'menu.classic': 'Kiasili',
         'menu.blended': 'Imechanganywa',
         'menu.tropical': 'Ya Tropiki',
         
+// ... (rest of the code remains the same)
         // Footer
         'footer.brand': 'Utamu wa Miwa',
         'footer.tagline': 'Maji ya Miwa Freshi',
@@ -387,7 +490,59 @@ export const LanguageProvider = ({ children }) => {
         'price.largePrice': '4,000 TZS',
         'price.smallGlass': 'Kidogo - 500 TZS',
         'price.mediumGlass': 'Kati - 1,000 TZS',
-        'price.largeBottle': 'Kubwa - 4,000 TZS'
+        'price.largeBottle': 'Kubwa - 4,000 TZS',
+        
+        // Store Locator
+        'storeLocator.hero.title': 'Pata Maduka Yetu',
+        'storeLocator.hero.subtitle': 'Tembelea Zanzibar',
+        'storeLocator.hero.description': 'Gundua maduka yetu rahisi katika Zanzibar na ufurahie maji tamu karibu nawe.',
+        'storeLocator.findNearby': 'Pata Maduka ya Karibu',
+        'storeLocator.searchPlaceholder': 'Tafuta maduka kwa jina au mahali...',
+        'storeLocator.filter': 'Chuja',
+        'storeLocator.storesNearYou': 'Maduka ya Karibu',
+        'storeLocator.mainStore': 'Duka Kuu',
+        'storeLocator.directions': 'Mwelekeo',
+        'storeLocator.call': 'Piga Simu',
+        'storeLocator.mapTitle': 'Mahali pa Maduka',
+        'storeLocator.resetView': 'Onyesha Upya',
+        'stores.stoneTown': 'Utamu wa Miwa - Stone Town',
+        'stores.stoneTown.address': 'Mtaa wa MKwapa, Stone Town',
+        'stores.nungwi': 'Utamu wa Miwa - Nungwi',
+        'stores.nungwi.address': 'Barabara ya Pwani ya Nungwi, Nungwi',
+        'stores.paje': 'Utamu wa Miwa - Paje',
+        'stores.paje.address': 'Barabara ya Pwani ya Paje, Paje',
+        'stores.kendwa': 'Utamu wa Miwa - Kendwa',
+        'stores.kendwa.address': 'Barabara ya Pwani ya Kendwa, Kendwa',
+        'storeLocator.features.delivery': 'Uwasilishaji',
+        'storeLocator.features.wifi': 'WiFi',
+        'storeLocator.features.parking': 'Maegesho',
+        'storeLocator.features.seating': 'Viti vya Kuketi',
+        'storeLocator.features.beach_view': 'Mwonekano wa Pwani',
+        'storeLocator.features.kitesurfing_area': 'Eneo la Kitesurfing',
+        'storeLocator.features.sunset_view': 'Mwonekano wa Jua Kuchwa',
+        
+        // Reviews
+        'reviews.hero.title': 'Maoni ya Wateja',
+        'reviews.hero.subtitle': 'Wateja Wanachosema',
+        'reviews.hero.description': 'Soma maoni halisi kutoka kwa wateja wetu waliolala na ushiriki uzoefu wako mwenyewe.',
+        'reviews.writeReview': 'Andika Maoni',
+        'reviews.basedOn': 'Kulingana na',
+        'reviews.reviews': 'maoni',
+        'reviews.ratingDistribution': 'Utambulisho wa Rating',
+        'reviews.verifiedPurchases': 'ununuzi uliothibitishwa',
+        'reviews.fiveStarReviews': 'maoni ya nyota tano',
+        'reviews.helpfulVotes': 'kura za usaidizi',
+        'reviews.searchPlaceholder': 'Tafuta maoni...',
+        'reviews.allRatings': 'Rating Zote',
+        'reviews.stars': 'nyota',
+        'reviews.star': 'nyota',
+        'reviews.mostRecent': 'Hivi Karibuni Zaidi',
+        'reviews.mostHelpful': 'Zisaidizo Zaidi',
+        'reviews.highestRated': 'Yenye Rating ya Juu',
+        'reviews.customerReviews': 'Maoni ya Wateja',
+        'reviews.noReviews': 'Hakuna maoni bado',
+        'reviews.beFirstToReview': 'Kuwa wa kwanza kushiriki uzoefu wako!',
+        'reviews.writeFirstReview': 'Andika Maoni ya Kwanza'
       },
       
       it: {
@@ -396,6 +551,8 @@ export const LanguageProvider = ({ children }) => {
         'nav.about': 'Chi Siamo',
         'nav.menu': 'Il Nostro Menu',
         'nav.gallery': 'Galleria',
+        'nav.storeLocator': 'Trova Negozi',
+        'nav.reviews': 'Recensioni',
         'nav.contact': 'Contatti',
         
         // Home Page
@@ -417,8 +574,27 @@ export const LanguageProvider = ({ children }) => {
         'home.stats.daily': 'Fresco Ogni Giorno',
         
         'home.menu.title': 'Il Nostro Menu',
-        'home.menu.subtitle': 'Gusti in Evidenza',
-        'home.menu.description': 'Tutti i succhi spremuti freschi su ordinazione — scegli il tuo gusto, goditi la freschezza.',
+        
+        // Why Us Section
+        'home.whyUs.title': 'Perché Noi?',
+        'home.whyUs.subtitle': 'Ci Rende Speciali',
+        'home.whyUs.fresh.title': '100% Fresco',
+        'home.whyUs.fresh.desc': 'Spremuto fresco davanti a te — nessun conservante, nessun sapore artificiale.',
+        'home.whyUs.local.title': 'Canna da Zucchero Locale',
+        'home.whyUs.local.desc': 'Proveniente direttamente da agricoltori zanzibaresi locali per massima freschezza.',
+        'home.whyUs.energy.title': 'Energia Naturale',
+        'home.whyUs.energy.desc': 'Il perfetto boost di energia naturale — zucchero di canna puro, nessuna caffeina.',
+        'home.whyUs.love.title': 'Fatto con Amore',
+        'home.whyUs.love.desc': 'Ogni bicchiere preparato con passione e cura dal nostro team locale.',
+        'home.cta.title': 'Pronto per un Sorso Rinfrescante?',
+        'home.viewFullMenu': 'Vedi Menu Completo',
+        'home.reviews.title': 'Recensioni',
+        'home.reviews.subtitle': 'Dicono di Noi i Clienti',
+        'customer.name': 'bin abass',
+        'about.title': 'Nato dal Cuore di Zanzibar',
+        'about.description': 'Utamu wa Miwa è iniziato come piccolo venditore ambulante a Stone Town, Zanzibar. Con canna da zucchero fresca proveniente direttamente dalle fattorie locali, pressiamo ogni bicchiere a mano — offrendo il puro gusto naturale che gli zanzibaresi amano da generazioni.',
+        'header.tagline': 'Fresco dalla fattoria al bicchiere',
+        'nav.more': 'Altro',
         
         // Products
         'product.classic': 'Succo di Canna da Zucchero Classico',
@@ -427,6 +603,8 @@ export const LanguageProvider = ({ children }) => {
         'product.mint': 'Twist di Canna da Zucchero alla Menta',
         'product.passion': 'Twist di Canna da Zucchero alla Frutta della Passione',
         'product.cucumber': 'Twist di Canna da Zucchero al Cetriolo',
+        'product.extraIce': 'Ghiaccio Extra',
+        'product.extraIce.desc': 'Ghiaccio fresco per extra rinfrescamento',
         
         'product.classic.desc': 'Puro succo di canna da zucchero rinfrescante come la natura lo ha inteso.',
         'product.ginger.desc': 'Lo zenzero piccante incontra la dolce canna da zucchero per un mix energizzante.',
@@ -454,6 +632,8 @@ export const LanguageProvider = ({ children }) => {
         'menu.all': 'Tutti',
         'menu.customOrders': 'Ordini personalizzati benvenuti!',
         'menu.customOrdersDesc': 'Vuoi un mix speciale? Contattaci su WhatsApp',
+        'menu.addons': 'Aggiunte',
+        'menu.addons.desc': 'Migliora la tua bevanda con questi extra',
         'menu.customOrder': 'Ordine Personalizzato',
         'menu.classic': 'Classico',
         'menu.blended': 'Mixato',
@@ -567,7 +747,59 @@ export const LanguageProvider = ({ children }) => {
         'price.largePrice': '4,000 TZS',
         'price.smallGlass': 'Piccolo - 500 TZS',
         'price.mediumGlass': 'Medio - 1,000 TZS',
-        'price.largeBottle': 'Grande - 4,000 TZS'
+        'price.largeBottle': 'Grande - 4,000 TZS',
+        
+        // Store Locator
+        'storeLocator.hero.title': 'Trova i Nostri Negozi',
+        'storeLocator.hero.subtitle': 'Visitaci a Zanzibar',
+        'storeLocator.hero.description': 'Scopri le nostre comode località a Zanzibar e goditi succo di canna da zucchero fresco vicino a te.',
+        'storeLocator.findNearby': 'Trova Negozi Vicini',
+        'storeLocator.searchPlaceholder': 'Cerca negozi per nome o località...',
+        'storeLocator.filter': 'Filtra',
+        'storeLocator.storesNearYou': 'Negozi Vicino a Te',
+        'storeLocator.mainStore': 'Negozio Principale',
+        'storeLocator.directions': 'Indicazioni',
+        'storeLocator.call': 'Chiama',
+        'storeLocator.mapTitle': 'Località dei Negozi',
+        'storeLocator.resetView': 'Reimposta Vista',
+        'stores.stoneTown': 'Utamu wa Miwa - Stone Town',
+        'stores.stoneTown.address': 'Via MKwapa, Stone Town',
+        'stores.nungwi': 'Utamu wa Miwa - Nungwi',
+        'stores.nungwi.address': 'Via Spiaggia Nungwi, Nungwi',
+        'stores.paje': 'Utamu wa Miwa - Paje',
+        'stores.paje.address': 'Via Spiaggia Paje, Paje',
+        'stores.kendwa': 'Utamu wa Miwa - Kendwa',
+        'stores.kendwa.address': 'Via Spiaggia Kendwa, Kendwa',
+        'storeLocator.features.delivery': 'Consegna',
+        'storeLocator.features.wifi': 'WiFi',
+        'storeLocator.features.parking': 'Parcheggio',
+        'storeLocator.features.seating': 'Posti a Sedere',
+        'storeLocator.features.beach_view': 'Vista Mare',
+        'storeLocator.features.kitesurfing_area': 'Area Kitesurf',
+        'storeLocator.features.sunset_view': 'Vista Tramonto',
+        
+        // Reviews
+        'reviews.hero.title': 'Recensioni dei Clienti',
+        'reviews.hero.subtitle': 'Dicono di Noi',
+        'reviews.hero.description': 'Leggi recensioni autentiche dai nostri clienti soddisfatti e condividi la tua esperienza.',
+        'reviews.writeReview': 'Scrivi una Recensione',
+        'reviews.basedOn': 'Basato su',
+        'reviews.reviews': 'recensioni',
+        'reviews.ratingDistribution': 'Distribuzione Valutazioni',
+        'reviews.verifiedPurchases': 'acquisti verificati',
+        'reviews.fiveStarReviews': 'recensioni a 5 stelle',
+        'reviews.helpfulVotes': 'voti utili',
+        'reviews.searchPlaceholder': 'Cerca recensioni...',
+        'reviews.allRatings': 'Tutte le Valutazioni',
+        'reviews.stars': 'stelle',
+        'reviews.star': 'stella',
+        'reviews.mostRecent': 'Più Recenti',
+        'reviews.mostHelpful': 'Più Utili',
+        'reviews.highestRated': 'Più Valutate',
+        'reviews.customerReviews': 'Recensioni dei Clienti',
+        'reviews.noReviews': 'Nessuna recensione ancora',
+        'reviews.beFirstToReview': 'Sii il primo a condividere la tua esperienza!',
+        'reviews.writeFirstReview': 'Scrivi la Prima Recensione'
       }
     }
     
@@ -582,13 +814,15 @@ export const LanguageProvider = ({ children }) => {
     languages: [
       { code: 'en', name: 'English', flag: '🇬🇧' },
       { code: 'sw', name: 'Kiswahili', flag: '🇹🇿' },
-      { code: 'it', name: 'Italiano', flag: '🇮🇹' }
-    ]
-  }
+      { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+    ],
+  };
 
   return (
     <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
-  )
-}
+  );
+};
+
+export default LanguageProvider;
