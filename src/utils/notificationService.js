@@ -24,11 +24,11 @@ ${stars} (${review.rating}/5.0)
 ┌─ 📝 *Title:* ${review.title}
 └─ 💬 *Feedback:* ${review.content}
 
-👤 *CUSTOMER INFORMATION*
-┌─ 🧑 *Name:* ${review.name}
-├─ 📧 *Email:* ${review.email}
-├─ 🍹 *Product:* ${review.productName}
-└─ 📅 *Date:* ${currentDate}
+� *REVIEW DATE*
+${currentDate}
+
+${review.productName ? `🍹 *PRODUCT REVIEWED*
+${review.productName}` : ''}
 
 🎯 *SENTIMENT INDICATOR*
 ${review.rating >= 4 ? '😊 POSITIVE • Excellent Experience!' : 
