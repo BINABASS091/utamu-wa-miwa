@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SplashScreen from './components/SplashScreen'
+import FloatingLogo from './components/FloatingLogo'
 import ShoppingCart from './components/ShoppingCart'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -33,9 +34,10 @@ function App() {
       <CartProvider>
         <>
           {showSplash && <SplashScreen onDone={handleSplashDone} />}
-          <Router>
+          <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
               <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+              <FloatingLogo />
               <main>
                 <Routes>
                   <Route path="/" element={<Home />} />

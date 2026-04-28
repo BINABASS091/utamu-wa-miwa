@@ -6,38 +6,95 @@ import ReviewForm from '../components/ReviewForm'
 import Rating from '../components/Rating'
 import { sendReviewNotifications } from '../utils/notificationService'
 
-// Save reviews to localStorage
+// Save reviews to localStorage with backup mechanism
 const saveReviews = (reviews) => {
   try {
+    // Save to primary storage
     localStorage.setItem('utamuReviews', JSON.stringify(reviews))
+    
+    // Create backup with timestamp
+    const backupData = {
+      reviews: reviews,
+      timestamp: new Date().toISOString(),
+      version: '1.0'
+    }
+    localStorage.setItem('utamuReviews_backup', JSON.stringify(backupData))
+    
+    // Also save to sessionStorage as additional backup
+    sessionStorage.setItem('utamuReviews_temp', JSON.stringify(reviews))
+    
+    console.log(`Successfully saved ${reviews.length} reviews to localStorage`)
+    return true
   } catch (e) {
     console.error('Error saving reviews:', e)
+    
+    // Try to save to sessionStorage as fallback
+    try {
+      sessionStorage.setItem('utamuReviews_fallback', JSON.stringify(reviews))
+      console.log('Saved reviews to sessionStorage as fallback')
+    } catch (fallbackError) {
+      console.error('Failed to save to sessionStorage too:', fallbackError)
+    }
+    return false
   }
 }
 
-// Load reviews from localStorage (from bin abass, sultan, and bakari)
+// Load reviews from localStorage with backup recovery
 const loadReviews = (customerName) => {
-  const stored = localStorage.getItem('utamuReviews')
+  let stored = localStorage.getItem('utamuReviews')
+  
+  // Try to recover from backup if primary storage is empty
+  if (!stored) {
+    console.log('Primary storage empty, trying backup...')
+    const backup = localStorage.getItem('utamuReviews_backup')
+    if (backup) {
+      try {
+        const backupData = JSON.parse(backup)
+        stored = JSON.stringify(backupData.reviews)
+        console.log('Recovered reviews from backup')
+      } catch (e) {
+        console.error('Failed to parse backup:', e)
+      }
+    }
+  }
+  
+  // Try sessionStorage as last resort
+  if (!stored) {
+    console.log('Trying sessionStorage fallback...')
+    const sessionData = sessionStorage.getItem('utamuReviews_temp') || 
+                       sessionStorage.getItem('utamuReviews_fallback')
+    if (sessionData) {
+      stored = sessionData
+      console.log('Recovered reviews from sessionStorage')
+    }
+  }
+  
   if (stored) {
     try {
       const allReviews = JSON.parse(stored)
-      // Filter reviews from bin abass, sultan, and bakari
-      const customerReviews = allReviews.filter(review => 
-        review.name.toLowerCase() === 'bin abass' || 
-        review.name.toLowerCase() === 'sultan' ||
-        review.name.toLowerCase() === 'bakari'
+      console.log(`Loaded ${allReviews.length} reviews from storage`)
+      
+      // Filter only valid reviews (no longer filtering by specific customers)
+      const validReviews = allReviews.filter(review => 
+        review && review.name && review.title && review.content && review.rating
       )
+      
+      console.log(`Found ${validReviews.length} valid reviews`)
+      
       // Sort by date (newest first)
-      const sortedReviews = customerReviews.sort((a, b) => {
+      const sortedReviews = validReviews.sort((a, b) => {
         const dateA = new Date(a.date || 0)
         const dateB = new Date(b.date || 0)
         return dateB - dateA // Newest first
       })
+      
       return sortedReviews
     } catch (e) {
       console.error('Error loading reviews:', e)
     }
   }
+  
+  console.log('No reviews found in any storage')
   return [] // Start with empty array - no sample reviews
 }
 
@@ -49,23 +106,46 @@ export default function Reviews() {
   const [selectedRating, setSelectedRating] = useState(0)
   const [sortBy, setSortBy] = useState('recent')
 
+  // Auto-save reviews whenever they change
+  useEffect(() => {
+    if (reviews.length > 0) {
+      const success = saveReviews(reviews)
+      if (!success) {
+        console.warn('Failed to save reviews - data may be lost on refresh')
+      }
+    }
+  }, [reviews])
+
+  // Add beforeunload listener to save before page closes
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (reviews.length > 0) {
+        saveReviews(reviews)
+      }
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [reviews])
+
   // Filter and sort reviews
   const filteredReviews = reviews
     .filter(review => {
-      const matchesSearch = review.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           review.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           review.name.toLowerCase().includes(searchTerm.toLowerCase())
+      if (!review) return false
+      const matchesSearch = (review.title && review.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                           (review.content && review.content.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                           (review.name && review.name.toLowerCase().includes(searchTerm.toLowerCase()))
       const matchesRating = selectedRating === 0 || review.rating === selectedRating
       return matchesSearch && matchesRating
     })
     .sort((a, b) => {
       switch (sortBy) {
         case 'recent':
-          return new Date(b.date) - new Date(a.date)
+          return new Date(b.date || 0) - new Date(a.date || 0)
         case 'helpful':
-          return b.helpful - a.helpful
+          return (b.helpful || 0) - (a.helpful || 0)
         case 'rating':
-          return b.rating - a.rating
+          return (b.rating || 0) - (a.rating || 0)
         default:
           return 0
       }
@@ -73,42 +153,65 @@ export default function Reviews() {
 
   // Calculate statistics
   const averageRating = reviews.length > 0 
-    ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length 
+    ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / reviews.length 
     : 0
 
   const ratingDistribution = [5, 4, 3, 2, 1].map(rating => ({
     rating,
-    count: reviews.filter(r => r.rating === rating).length,
-    percentage: reviews.length > 0 ? (reviews.filter(r => r.rating === rating).length / reviews.length) * 100 : 0
+    count: reviews.filter(r => r && r.rating === rating).length,
+    percentage: reviews.length > 0 ? (reviews.filter(r => r && r.rating === rating).length / reviews.length) * 100 : 0
   }))
 
   const handleReviewSubmit = async (reviewData) => {
-    // In a real app, this would save to a database
-    const newReview = {
-      ...reviewData,
-      id: Date.now(), // Use timestamp for unique ID
-      helpful: 0,
-      verified: false
+    try {
+      // In a real app, this would save to a database
+      const newReview = {
+        ...reviewData,
+        id: Date.now() + Math.random(), // More unique ID with random
+        date: new Date().toISOString(),
+        helpful: 0,
+        verified: false
+      }
+      
+      const updatedReviews = [newReview, ...reviews]
+      
+      // Save to all storage locations
+      const saveSuccess = saveReviews(updatedReviews)
+      
+      if (!saveSuccess) {
+        console.error('Failed to save review to primary storage')
+        // Still proceed with update but warn user
+      }
+      
+      // Update state
+      setReviews(updatedReviews)
+      
+      // Dispatch storage event to notify Home page of new review
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'utamuReviews',
+        newValue: JSON.stringify(updatedReviews),
+        oldValue: JSON.stringify(reviews)
+      }))
+      
+      // Send notifications to business
+      try {
+        await sendReviewNotifications(newReview)
+      } catch (notificationError) {
+        console.warn('Failed to send notifications:', notificationError)
+      }
+      
+      setShowForm(false)
+      
+      // Show success message with save status
+      const message = saveSuccess 
+        ? 'Thank you for your review! It has been saved successfully.'
+        : 'Thank you for your review! It was submitted but may not persist after refresh.'
+      alert(message)
+      
+    } catch (error) {
+      console.error('Error submitting review:', error)
+      alert('There was an error submitting your review. Please try again.')
     }
-    
-    const updatedReviews = [newReview, ...reviews]
-    setReviews(updatedReviews)
-    saveReviews(updatedReviews) // Save to localStorage
-    
-    // Dispatch storage event to notify Home page of new review
-    window.dispatchEvent(new StorageEvent('storage', {
-      key: 'utamuReviews',
-      newValue: JSON.stringify(updatedReviews),
-      oldValue: JSON.stringify(reviews)
-    }))
-    
-    // Send notifications to business
-    await sendReviewNotifications(newReview)
-    
-    setShowForm(false)
-    
-    // Show success message
-    alert('Thank you for your review! It has been submitted successfully.')
   }
 
   const handleHelpful = (reviewId) => {
@@ -195,19 +298,19 @@ export default function Reviews() {
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-green-600" />
                 <span className="text-gray-700 dark:text-gray-300">
-                  {reviews.filter(r => r.verified).length} {t('reviews.verifiedPurchases')}
+                  {reviews.filter(r => r && r.verified).length} {t('reviews.verifiedPurchases')}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <TrendingUp className="w-5 h-5 text-green-600" />
                 <span className="text-gray-700 dark:text-gray-300">
-                  {reviews.filter(r => r.rating === 5).length} {t('reviews.fiveStarReviews')}
+                  {reviews.filter(r => r && r.rating === 5).length} {t('reviews.fiveStarReviews')}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <MessageSquare className="w-5 h-5 text-green-600" />
                 <span className="text-gray-700 dark:text-gray-300">
-                  {reviews.reduce((sum, r) => sum + r.helpful, 0)} {t('reviews.helpfulVotes')}
+                  {reviews.reduce((sum, r) => sum + (r && r.helpful ? r.helpful : 0), 0)} {t('reviews.helpfulVotes')}
                 </span>
               </div>
             </div>

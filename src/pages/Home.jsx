@@ -146,7 +146,7 @@ export default function Home() {
                 {t('home.hero.title')}
               </h1>
 
-              <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 whitespace-nowrap overflow-hidden text-ellipsis">
+              <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                 {t('home.hero.description')}
               </p>
 
@@ -269,7 +269,7 @@ export default function Home() {
                 <h2 className="text-4xl lg:text-5xl font-extrabold font-heading text-white mt-3 mb-6 leading-tight">
                   {t('about.title')}
                 </h2>
-                <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                <p className="text-green-100 text-lg leading-relaxed mb-8 max-w-lg lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                   {t('about.description')}
                 </p>
                 <Link
@@ -281,13 +281,15 @@ export default function Home() {
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-white/20 max-w-xs w-full">
-                  <img
-                    src="https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_200/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
-                    alt="Utamu wa Miwa"
-                    loading="lazy"
-                    className="w-32 h-auto object-contain mx-auto mb-4 drop-shadow-lg"
-                  />
-                  <p className="text-white text-lg font-semibold font-heading italic whitespace-nowrap overflow-hidden text-ellipsis">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 bg-white rounded-full shadow-md mx-auto mb-4 flex items-center justify-center">
+                    <img
+                      src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                      alt="Utamu wa Miwa"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-white text-lg font-semibold font-heading italic lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                     "Fresh from farm to glass"
                   </p>
                   <p className="text-green-300 text-sm mt-2">Every cup, every day, with love.</p>

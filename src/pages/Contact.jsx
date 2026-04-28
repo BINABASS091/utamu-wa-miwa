@@ -14,7 +14,7 @@ export default function Contact() {
           <h1 className="text-5xl font-extrabold font-heading text-white mt-3 mb-4">
             {t('contact.hero.subtitle')}
           </h1>
-          <p className="text-green-200 text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+          <p className="text-green-200 text-lg lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
             {t('contact.hero.description')}
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">{t('contact.info.location')}</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
                       {t('contact.info.location.address')}
                     </p>
                   </div>
@@ -114,7 +114,7 @@ export default function Contact() {
                   <div>
                     <p className="font-bold text-gray-900 dark:text-white text-lg">{t('contact.whatsapp.title')}</p>
                     <p className="text-green-600 dark:text-green-400 text-sm font-medium">+255 718 622 621</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1 whitespace-nowrap overflow-hidden text-ellipsis">{t('contact.whatsapp.description')}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs mt-1 lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">{t('contact.whatsapp.description')}</p>
                   </div>
                 </a>
 

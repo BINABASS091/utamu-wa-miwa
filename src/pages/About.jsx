@@ -26,11 +26,13 @@ export default function About() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-green-700 to-green-900 py-24 text-center">
         <div className="max-w-4xl mx-auto px-4">
-              <img
-                src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
-                alt="Utamu wa Miwa"
-                className="w-56 h-auto object-contain mx-auto mb-6 drop-shadow-lg"
-              />
+              <div className="inline-block w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-white rounded-full shadow-lg mx-auto mb-6 flex items-center justify-center">
+                <img
+                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                  alt="Utamu wa Miwa"
+                  className="w-full h-full object-cover"
+                />
+              </div>
           <h1 className="text-5xl font-extrabold font-heading text-white mb-4">{t('about.hero.subtitle')}</h1>
           <p className="text-green-200 text-xl leading-relaxed max-w-2xl mx-auto">
             {t('about.hero.description')}
@@ -63,11 +65,6 @@ export default function About() {
             {/* Decorative card */}
             <div className="flex justify-center">
               <div className="bg-gradient-to-br from-green-50 to-yellow-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-10 shadow-xl text-center max-w-sm w-full">
-                <img
-                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
-                  alt="Utamu wa Miwa"
-                  className="w-28 h-auto object-contain mx-auto mb-6"
-                />
                 <blockquote className="text-xl font-semibold font-heading text-gray-900 dark:text-white italic leading-relaxed">
                   "Hakuna kinywaji kizuri kama maji ya miwa mbichi."
                 </blockquote>

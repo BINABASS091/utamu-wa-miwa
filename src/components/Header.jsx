@@ -53,19 +53,11 @@ export default function Header({ darkMode, setDarkMode }) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo Text Only */}
             <Link 
               to="/" 
               className="flex items-center gap-3 group transform hover:scale-105 transition-all duration-300 ease-out"
             >
-              <div className="relative">
-                <img
-                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_200/v1773143743/utamu_wa_miwa_modern_mlno2y.png"
-                  alt="Utamu wa Miwa"
-                  className="h-14 w-auto object-contain drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300"
-                />
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-yellow-400/20 rounded-full blur-md group-hover:from-green-400/30 group-hover:to-yellow-400/30 transition-all duration-300 -z-10"></div>
-              </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-800 dark:from-green-400 dark:to-green-600 font-heading tracking-tight">
                   Utamu wa Miwa
