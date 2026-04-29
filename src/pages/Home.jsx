@@ -9,7 +9,8 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
 import { formatPrice, getPriceCategories } from '../utils/currency'
 
-const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1777461351/Utamuwamua-01_4_llsohy.png'
+const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_900,dpr_auto/v1777461351/Utamuwamua-01_4_llsohy.png'
+const HERO_IMAGE_PLACEHOLDER = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_10,w_100,blur_2000/v1777461351/Utamuwamua-01_4_llsohy.png'
 
 // --- Featured products data ---
 const featuredProducts = [
@@ -18,11 +19,11 @@ const featuredProducts = [
     nameKey: 'product.classic',
     descKey: 'product.classic.desc',
     badgeKey: 'product.badge.popular',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 1200w'
     ],
   },
   {
@@ -30,11 +31,11 @@ const featuredProducts = [
     nameKey: 'product.ginger',
     descKey: 'product.ginger.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145848/ginger_mektzz.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1773145848/ginger_mektzz.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145848/ginger_mektzz.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145848/ginger_mektzz.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773145848/ginger_mektzz.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1773145848/ginger_mektzz.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1773145848/ginger_mektzz.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1773145848/ginger_mektzz.jpg 1200w'
     ],
   },
   {
@@ -42,11 +43,11 @@ const featuredProducts = [
     nameKey: 'product.lemon',
     descKey: 'product.lemon.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145586/lime_zv4xp8.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1773145586/lime_zv4xp8.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145586/lime_zv4xp8.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145586/lime_zv4xp8.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773145586/lime_zv4xp8.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1773145586/lime_zv4xp8.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1773145586/lime_zv4xp8.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1773145586/lime_zv4xp8.jpg 1200w'
     ],
   },
   {
@@ -54,11 +55,11 @@ const featuredProducts = [
     nameKey: 'product.mint',
     descKey: 'product.mint.desc',
     badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 1200w'
     ],
   },
   {
@@ -66,11 +67,11 @@ const featuredProducts = [
     nameKey: 'product.passion',
     descKey: 'product.passion.desc',
     badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 1200w'
     ],
   },
   {
@@ -78,11 +79,11 @@ const featuredProducts = [
     nameKey: 'product.cucumber',
     descKey: 'product.cucumber.desc',
     badgeKey: 'product.badge.seasonal',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_70,w_400,h_300,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_75,w_800,h_600,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_1200,h_900,c_fill,dpr_auto/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 1200w'
     ],
   },
 ]
@@ -131,6 +132,7 @@ const sliderSettings = {
 export default function Home() {
   const { t, language } = useLanguage()
   const { addToCart } = useCart()
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const priceCategories = getPriceCategories()
 
@@ -201,10 +203,12 @@ export default function Home() {
               {/* Photo */}
               <div className="relative z-10 w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
                 <img
-                  src={HERO_IMAGE}
+                  src={heroImageLoaded ? HERO_IMAGE : HERO_IMAGE_PLACEHOLDER}
                   alt="Fresh sugarcane juice"
                   fetchpriority="high"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-300"
+                  onLoad={() => setHeroImageLoaded(true)}
+                  style={{ opacity: heroImageLoaded ? 1 : 0.7 }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
               </div>
