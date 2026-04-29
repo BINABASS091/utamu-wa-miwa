@@ -26,11 +26,11 @@ export default function About() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-green-700 to-green-900 py-24 text-center">
         <div className="max-w-4xl mx-auto px-4">
-              <div className="inline-block w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-white rounded-full shadow-lg mx-auto mb-6 flex items-center justify-center">
+              <div className="inline-block w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full shadow-lg mx-auto mb-6 flex items-center justify-center">
                 <img
-                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777461351/Utamuwamua-01_4_llsohy.png"
                   alt="Utamu wa Miwa"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
           <h1 className="text-5xl font-extrabold font-heading text-white mb-4">{t('about.hero.subtitle')}</h1>

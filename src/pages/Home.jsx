@@ -9,7 +9,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
 import { formatPrice, getPriceCategories } from '../utils/currency'
 
-const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1773155008/sugar2_is9tf8.jpg'
+const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_900/v1777461351/Utamuwamua-01_4_llsohy.png'
 
 // --- Featured products data ---
 const featuredProducts = [
@@ -18,11 +18,11 @@ const featuredProducts = [
     nameKey: 'product.classic',
     descKey: 'product.classic.desc',
     badgeKey: 'product.badge.popular',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773143147/sugarcane_hvtocf.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_14.59.57_ucaoku.jpg 1200w'
     ],
   },
   {
@@ -30,11 +30,11 @@ const featuredProducts = [
     nameKey: 'product.ginger',
     descKey: 'product.ginger.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145848/ginger_mektzz.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145848/ginger_mektzz.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145848/ginger_mektzz.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773145848/ginger_mektzz.jpg 1200w'
     ],
   },
   {
@@ -42,11 +42,11 @@ const featuredProducts = [
     nameKey: 'product.lemon',
     descKey: 'product.lemon.desc',
     badgeKey: null,
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145586/lime_zv4xp8.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145586/lime_zv4xp8.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145586/lime_zv4xp8.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773145586/lime_zv4xp8.jpg 1200w'
     ],
   },
   {
@@ -54,11 +54,11 @@ const featuredProducts = [
     nameKey: 'product.mint',
     descKey: 'product.mint.desc',
     badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.05.27_zzhtpo.jpg 1200w'
     ],
   },
   {
@@ -66,14 +66,24 @@ const featuredProducts = [
     nameKey: 'product.passion',
     descKey: 'product.passion.desc',
     badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.09.57_wgb4jx.jpg 1200w'
+    ],
   },
   {
     id: 6,
     nameKey: 'product.cucumber',
     descKey: 'product.cucumber.desc',
-    badgeKey: 'product.badge.new',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
+    badgeKey: 'product.badge.seasonal',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg',
+    imageSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777465010/WhatsApp_Image_2026-04-29_at_15.02.41_nu6slk.jpg 1200w'
+    ],
   },
 ]
 
@@ -281,12 +291,12 @@ export default function Home() {
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-white/20 max-w-xs w-full">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 bg-white rounded-full shadow-md mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-full shadow-md mx-auto mb-4 flex items-center justify-center">
                     <img
-                      src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                      src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777461351/Utamuwamua-01_4_llsohy.png"
                       alt="Utamu wa Miwa"
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                   <p className="text-white text-lg font-semibold font-heading italic lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
@@ -336,21 +346,25 @@ export default function Home() {
                   )}
                 </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">{t(product.nameKey)}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex-1">{t(product.descKey)}</p>
-                  <div className="flex justify-between items-end mt-4">
-                    <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('price.from')}</p>
-                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">{formatPrice(priceCategories.small, language)}</p>
-                    </div>
-                    <button
-                      onClick={() => addToCart(product, 1, 'medium')}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-full transition-colors shadow hover:shadow-lg"
-                    >
-                      <Plus className="w-3.5 h-3.5" /> {t('cart.addToCart')}
-                    </button>
-                  </div>
-                </div>
+                  <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">
+                    {product.nameKey === 'product.classic' ? 'Classic Sugarcane' : 
+                     product.nameKey === 'product.ginger' ? 'Ginger Sugarcane' : 
+                     product.nameKey === 'product.lemon' ? 'Lemon Sugarcane' : 
+                     product.nameKey === 'product.mint' ? 'Mint Sugarcane' : 
+                     product.nameKey === 'product.passion' ? 'Passion' : 
+                     product.nameKey === 'product.cucumber' ? 'Cucumber Sugarcane' : 
+                     t(product.nameKey)}
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex-1">
+                    {product.descKey === 'product.classic.desc' ? 'Pure, refreshing sugarcane the way nature intended.' : 
+                     product.descKey === 'product.ginger.desc' ? 'Spicy ginger meets sweet sugarcane for an invigorating drink.' : 
+                     product.descKey === 'product.lemon.desc' ? 'Zesty lemon adds a refreshing citrus to classic sugarcane.' : 
+                     product.descKey === 'product.mint.desc' ? 'Cool mint creates a perfectly refreshing and soothing drink.' : 
+                     product.descKey === 'product.passion.desc' ? 'Tropical passion with sugarcane juice' : 
+                     product.descKey === 'product.cucumber.desc' ? 'Crisp cucumber provides extra hydration and freshness.' : 
+                     t(product.descKey)}
+                  </p>
+                                  </div>
               </div>
             ))}
           </div>

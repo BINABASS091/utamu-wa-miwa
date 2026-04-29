@@ -24,7 +24,7 @@ const storeLocations = [
     rating: 4.8,
     reviews: 127,
     features: ['delivery', 'wifi', 'parking', 'seating'],
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1773155008/sugar2_is9tf8.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777461351/Utamuwamua-01_4_llsohy.png',
     isMainStore: true
   },
   {
@@ -47,7 +47,7 @@ const storeLocations = [
     rating: 4.9,
     reviews: 89,
     features: ['delivery', 'beach_view', 'parking'],
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777461351/Utamuwamua-01_4_llsohy.png',
     isMainStore: false
   },
   {
@@ -70,7 +70,7 @@ const storeLocations = [
     rating: 4.7,
     reviews: 64,
     features: ['delivery', 'kitesurfing_area', 'parking'],
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777461351/Utamuwamua-01_4_llsohy.png',
     isMainStore: false
   },
   {
@@ -93,7 +93,7 @@ const storeLocations = [
     rating: 4.6,
     reviews: 45,
     features: ['delivery', 'sunset_view', 'parking'],
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_600/v1777461351/Utamuwamua-01_4_llsohy.png',
     isMainStore: false
   }
 ]

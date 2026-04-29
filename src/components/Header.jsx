@@ -59,11 +59,11 @@ export default function Header({ darkMode, setDarkMode }) {
               className="flex items-center gap-3 group transform hover:scale-105 transition-all duration-300 ease-out"
             >
               {/* Logo - Always Visible */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full shadow-md flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full shadow-md flex items-center justify-center flex-shrink-0">
                 <img
-                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777461351/Utamuwamua-01_4_llsohy.png"
                   alt="Utamu wa Miwa"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
               

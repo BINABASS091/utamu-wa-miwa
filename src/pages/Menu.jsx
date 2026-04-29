@@ -13,10 +13,10 @@ const menuItems = [
     id: 1,
     nameKey: 'product.classic',
     categoryKey: 'menu.classic',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 800w'
     ],
     descKey: 'product.classic.desc',
     sizes: ['Small', 'Medium', 'Large'],
@@ -92,20 +92,6 @@ const menuItems = [
     sizes: ['Small', 'Medium', 'Large'],
     gradient: 'from-green-400 to-emerald-500',
     badgeKey: 'product.badge.seasonal',
-  },
-  {
-    id: 7,
-    nameKey: 'product.extraIce',
-    categoryKey: 'menu.addons',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145841/ice_il0wab.jpg',
-    imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773145841/ice_il0wab.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773145841/ice_il0wab.jpg 800w'
-    ],
-    descKey: 'product.extraIce.desc',
-    sizes: ['Small', 'Medium', 'Large'],
-    gradient: 'from-blue-300 to-cyan-400',
-    badgeKey: null,
   },
 ]
 

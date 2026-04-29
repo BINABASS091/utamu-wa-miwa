@@ -6,17 +6,17 @@ import { useLanguage } from '../contexts/LanguageContext'
 const galleryItems = [
   {
     id: 1,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg',
     srcSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 1200w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 1200w'
     ],
-    altKey: 'product.lemon',
+    altKey: 'product.classic',
     labelKey: 'gallery.tag.classic',
     tagKey: 'gallery.tag.classic',
     featured: true,
-    description: 'Fresh lemon sugarcane juice with a zesty twist'
+    description: 'Pure, classic sugarcane juice - the original taste'
   },
   {
     id: 2,
@@ -33,6 +33,19 @@ const galleryItems = [
   },
   {
     id: 3,
+    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg',
+    srcSet: [
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 1200w'
+    ],
+    altKey: 'product.lemon',
+    labelKey: 'gallery.tag.blended',
+    tagKey: 'gallery.tag.blended',
+    description: 'Fresh lemon sugarcane juice with a zesty twist'
+  },
+  {
+    id: 4,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
@@ -45,7 +58,7 @@ const galleryItems = [
     description: 'Refreshing mint sugarcane juice with cooling properties'
   },
   {
-    id: 4,
+    id: 5,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 400w',
@@ -58,7 +71,7 @@ const galleryItems = [
     description: 'Tropical passion fruit sugarcane blend'
   },
   {
-    id: 5,
+    id: 6,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 400w',
@@ -69,20 +82,6 @@ const galleryItems = [
     labelKey: 'gallery.tag.blended',
     tagKey: 'gallery.tag.blended',
     description: 'Cool cucumber sugarcane juice for hydration'
-  },
-  {
-    id: 6,
-    src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg',
-    srcSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1773143147/sugarcane_hvtocf.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1773143147/sugarcane_hvtocf.jpg 800w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_1200,h_900,c_fill/v1773143147/sugarcane_hvtocf.jpg 1200w'
-    ],
-    altKey: 'product.classic',
-    labelKey: 'gallery.tag.classic',
-    tagKey: 'gallery.tag.classic',
-    featured: true,
-    description: 'Pure, classic sugarcane juice - the original taste'
   },
 ]
 

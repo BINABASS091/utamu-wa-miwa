@@ -26,11 +26,11 @@
         {/* Content */}
       <div className="relative flex flex-col items-center gap-6 px-8 text-center animate-[fadeIn_0.8s_ease_forwards]">
         {/* Logo */}
-        <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 bg-white rounded-full shadow-lg flex items-center justify-center">
+        <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full shadow-lg flex items-center justify-center">
           <img
-            src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+            src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777461351/Utamuwamua-01_4_llsohy.png"
             alt="Utamu wa Miwa"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-full"
           />
         </div>
 
