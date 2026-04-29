@@ -13,10 +13,10 @@ const menuItems = [
     id: 1,
     nameKey: 'product.classic',
     categoryKey: 'menu.classic',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466063/WhatsApp_Image_2026-04-29_at_15.33.59_tyls0q.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777462986/WhatsApp_Image_2026-04-29_at_14.42.30_mima5f.jpg 800w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777466063/WhatsApp_Image_2026-04-29_at_15.33.59_tyls0q.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466063/WhatsApp_Image_2026-04-29_at_15.33.59_tyls0q.jpg 800w'
     ],
     descKey: 'product.classic.desc',
     sizes: ['Small', 'Medium', 'Large'],
@@ -69,10 +69,10 @@ const menuItems = [
     id: 5,
     nameKey: 'product.passion',
     categoryKey: 'menu.blended',
-    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
+    image: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466511/WhatsApp_Image_2026-04-29_at_15.38.59_obwrwo.jpg',
     imageSet: [
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 400w',
-      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 800w'
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777466511/WhatsApp_Image_2026-04-29_at_15.38.59_obwrwo.jpg 400w',
+      'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466511/WhatsApp_Image_2026-04-29_at_15.38.59_obwrwo.jpg 800w'
     ],
     descKey: 'product.passion.desc',
     sizes: ['Small', 'Medium', 'Large'],

@@ -348,11 +348,11 @@ export default function Home() {
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">
                     {product.nameKey === 'product.classic' ? 'Classic Sugarcane' : 
-                     product.nameKey === 'product.ginger' ? 'Ginger Sugarcane' : 
-                     product.nameKey === 'product.lemon' ? 'Lemon Sugarcane' : 
-                     product.nameKey === 'product.mint' ? 'Mint Sugarcane' : 
-                     product.nameKey === 'product.passion' ? 'Passion' : 
-                     product.nameKey === 'product.cucumber' ? 'Cucumber Sugarcane' : 
+                     product.nameKey === 'product.ginger' ? 'Classic Ginger' : 
+                     product.nameKey === 'product.lemon' ? 'Classic Lemon' : 
+                     product.nameKey === 'product.mint' ? 'Classic Mint' : 
+                     product.nameKey === 'product.passion' ? 'Classic Passion' : 
+                     product.nameKey === 'product.cucumber' ? 'Classic Cucumber' : 
                      t(product.nameKey)}
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex-1">
