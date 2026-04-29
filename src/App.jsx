@@ -3,7 +3,6 @@ import { useState, useEffect, useCallback, Suspense, lazy } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SplashScreen from './components/SplashScreen'
-import ShoppingCart from './components/ShoppingCart'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { CartProvider } from './contexts/CartContext'
 
@@ -15,6 +14,7 @@ const Gallery = lazy(() => import('./pages/Gallery'))
 const StoreLocator = lazy(() => import('./pages/StoreLocator'))
 const Reviews = lazy(() => import('./pages/Reviews'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Cart = lazy(() => import('./pages/Cart'))
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -103,12 +103,20 @@ function App() {
                       <Contact />
                     </Suspense>
                   } />
+                  <Route path="/cart" element={
+                    <Suspense fallback={
+                      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+                      </div>
+                    }>
+                      <Cart />
+                    </Suspense>
+                  } />
                 </Routes>
               </main>
               <Footer />
             </div>
           </Router>
-          <ShoppingCart />
         </>
       </CartProvider>
     </LanguageProvider>

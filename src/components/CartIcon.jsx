@@ -1,12 +1,13 @@
 import { ShoppingCart } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 
 export default function CartIcon() {
-  const { totalItems, openCart } = useCart()
+  const { totalItems } = useCart()
 
   return (
-    <button
-      onClick={openCart}
+    <Link
+      to="/cart"
       className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
       aria-label="Shopping cart"
     >
@@ -16,6 +17,6 @@ export default function CartIcon() {
           {totalItems > 99 ? '99+' : totalItems}
         </span>
       )}
-    </button>
+    </Link>
   )
 }

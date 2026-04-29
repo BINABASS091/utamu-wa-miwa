@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { WhatsAppIcon } from '../components/BrandIcons'
 import { Filter, Plus, Star } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -98,6 +99,7 @@ const menuItems = [
 export default function Menu() {
   const { t, language } = useLanguage()
   const { addToCart } = useCart()
+  const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedSize, setSelectedSize] = useState({})
   const priceCategories = getPriceCategories()
@@ -250,6 +252,7 @@ export default function Menu() {
                       onClick={() => {
                         const size = selectedSize[product.id] || 'medium'
                         addToCart(product, 1, size)
+                        navigate('/cart')
                       }}
                       className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-full transition-colors"
                     >

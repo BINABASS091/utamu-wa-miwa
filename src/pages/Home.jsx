@@ -10,7 +10,7 @@ import { useCart } from '../contexts/CartContext'
 import { formatPrice, getPriceCategories } from '../utils/currency'
 
 const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_900,dpr_auto/v1777461351/Utamuwamua-01_4_llsohy.png'
-const HERO_IMAGE_PLACEHOLDER = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_10,w_100,blur_2000/v1777461351/Utamuwamua-01_4_llsohy.png'
+const HERO_IMAGE_PLACEHOLDER = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_10,w_100/v1777461351/Utamuwamua-01_4_llsohy.png'
 
 // --- Featured products data ---
 const featuredProducts = [
