@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function FloatingLogo() {
   return (
-    <div className="fixed top-20 left-4 sm:top-24 sm:left-6 z-40 group">
+    <div className="fixed top-24 left-4 sm:top-28 sm:left-6 z-40 group">
       <Link 
         to="/" 
         className="block transform hover:scale-110 transition-all duration-300 ease-out"

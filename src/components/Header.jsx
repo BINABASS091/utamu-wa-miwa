@@ -53,12 +53,22 @@ export default function Header({ darkMode, setDarkMode }) {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo Text Only */}
+            {/* Logo with Responsive Text */}
             <Link 
               to="/" 
               className="flex items-center gap-3 group transform hover:scale-105 transition-all duration-300 ease-out"
             >
-              <div className="flex flex-col leading-tight">
+              {/* Logo - Always Visible */}
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full shadow-md flex items-center justify-center flex-shrink-0">
+                <img
+                  src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
+                  alt="Utamu wa Miwa"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Text - Hidden on Mobile, Visible on Desktop */}
+              <div className="hidden md:flex flex-col leading-tight">
                 <span className="text-lg sm:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-800 dark:from-green-400 dark:to-green-600 font-heading tracking-tight">
                   Utamu wa Miwa
                 </span>

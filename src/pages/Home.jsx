@@ -281,7 +281,7 @@ export default function Home() {
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-white/20 max-w-xs w-full">
-                  <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 bg-white rounded-full shadow-md mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 bg-white rounded-full shadow-md mx-auto mb-4 flex items-center justify-center">
                     <img
                       src="https://res.cloudinary.com/diyy8h0d9/image/upload/v1777375559/Utamuwamua-01_tdl9jx.png"
                       alt="Utamu wa Miwa"
