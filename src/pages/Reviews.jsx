@@ -100,55 +100,87 @@ const loadReviews = (customerName) => {
 
 export default function Reviews() {
   const { t } = useLanguage()
-  const [reviews, setReviews] = useState(loadReviews(t('customer.name')))
+  const [reviews, setReviews] = useState([])
+  const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedRating, setSelectedRating] = useState(0)
   const [sortBy, setSortBy] = useState('recent')
 
-  // Auto-save reviews whenever they change
+  // Fetch reviews from API
   useEffect(() => {
-    if (reviews.length > 0) {
-      const success = saveReviews(reviews)
-      if (!success) {
-        console.warn('Failed to save reviews - data may be lost on refresh')
+    const fetchReviews = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/reviews`)
+        const data = await response.json()
+        
+        if (data.success) {
+          setReviews(data.data)
+        } else {
+          console.error('Failed to fetch reviews:', data.error)
+        }
+      } catch (error) {
+        console.error('Error fetching reviews:', error)
+      } finally {
+        setLoading(false)
       }
     }
-  }, [reviews])
 
-  // Add beforeunload listener to save before page closes
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      if (reviews.length > 0) {
-        saveReviews(reviews)
+    fetchReviews()
+  }, [])
+
+  // Handle new review submission
+  const handleNewReview = async (reviewData) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+      })
+
+      const result = await response.json()
+      
+      if (result.success) {
+        // Refresh reviews list
+        const fetchReviews = async () => {
+          const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/reviews`)
+          const data = await response.json()
+          if (data.success) {
+            setReviews(data.data)
+          }
+        }
+        fetchReviews()
+        
+        setShowForm(false)
+      } else {
+        console.error('Failed to submit review:', result.error)
       }
+    } catch (error) {
+      console.error('Error submitting review:', error)
     }
-
-    window.addEventListener('beforeunload', handleBeforeUnload)
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
-  }, [reviews])
+  }
 
   // Filter and sort reviews
   const filteredReviews = reviews
     .filter(review => {
       if (!review) return false
-      const matchesSearch = (review.title && review.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                           (review.content && review.content.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                           (review.name && review.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      const matchesSearch = (review.review_text && review.review_text.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                           (review.customer_name && review.customer_name.toLowerCase().includes(searchTerm.toLowerCase()))
       const matchesRating = selectedRating === 0 || review.rating === selectedRating
       return matchesSearch && matchesRating
     })
     .sort((a, b) => {
-      switch (sortBy) {
-        case 'recent':
-          return new Date(b.date || 0) - new Date(a.date || 0)
-        case 'helpful':
-          return (b.helpful || 0) - (a.helpful || 0)
-        case 'rating':
-          return (b.rating || 0) - (a.rating || 0)
-        default:
-          return 0
+      if (sortBy === 'recent') {
+        return new Date(b.created_at || 0) - new Date(a.created_at || 0)
+      } else if (sortBy === 'rating') {
+        return (b.rating || 0) - (a.rating || 0)
+      } else if (sortBy === 'helpful') {
+        return (b.helpful_votes || 0) - (a.helpful_votes || 0)
       }
+      return 0
     })
 
   // Calculate statistics
@@ -366,28 +398,29 @@ export default function Reviews() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {t('reviews.customerReviews')} ({filteredReviews.length})
+              {t('reviews.customerReviews')}
             </h2>
-            <button
-              onClick={() => setShowForm(true)}
-              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
-            >
-              {t('reviews.writeReview')}
-            </button>
+            <p className="text-gray-600 dark:text-gray-400">
+              {filteredReviews.length} {t('reviews.reviews')}
+            </p>
           </div>
 
-          {filteredReviews.length === 0 ? (
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+            </div>
+          ) : filteredReviews.length === 0 ? (
             <div className="text-center py-12">
-              <MessageSquare className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                 {t('reviews.noReviews')}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 {t('reviews.beFirstToReview')}
               </p>
               <button
                 onClick={() => setShowForm(true)}
-                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
               >
                 {t('reviews.writeFirstReview')}
               </button>
@@ -397,9 +430,15 @@ export default function Reviews() {
               {filteredReviews.map((review) => (
                 <Review
                   key={review.id}
-                  review={review}
-                  onHelpful={handleHelpful}
-                  onReport={handleReport}
+                  review={{
+                    ...review,
+                    name: review.customer_name,
+                    content: review.review_text,
+                    date: review.created_at,
+                    helpful: review.helpful_votes,
+                    verified: review.is_verified_purchase
+                  }}
+                  onHelpful={() => console.log('Helpful clicked')}
                 />
               ))}
             </div>
@@ -412,7 +451,7 @@ export default function Reviews() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-900 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <ReviewForm
-              onSubmit={handleReviewSubmit}
+              onSubmit={handleNewReview}
               onCancel={() => setShowForm(false)}
             />
           </div>

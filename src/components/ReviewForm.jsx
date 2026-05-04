@@ -10,9 +10,11 @@ export default function ReviewForm({
   className = ''
 }) {
   const [formData, setFormData] = useState({
+    product_id: productId || null,
+    customer_name: '',
+    email: '',
     rating: 0,
-    title: '',
-    content: ''
+    review_text: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState({})
@@ -51,16 +53,20 @@ export default function ReviewForm({
   const validateForm = () => {
     const newErrors = {}
     
+    if (!formData.customer_name.trim()) {
+      newErrors.customer_name = 'Please enter your name'
+    }
+    
     if (!formData.rating) {
       newErrors.rating = 'Please select a rating'
     }
     
-    if (!formData.title.trim()) {
-      newErrors.title = 'Please enter a review title'
+    if (!formData.review_text.trim()) {
+      newErrors.review_text = 'Please enter your review'
     }
     
-    if (!formData.content.trim()) {
-      newErrors.content = 'Please enter your review'
+    if (formData.email && !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      newErrors.email = 'Please enter a valid email address'
     }
     
     setErrors(newErrors)
@@ -78,21 +84,22 @@ export default function ReviewForm({
     
     try {
       const reviewData = {
-        ...formData,
-        productId,
-        productName,
-        date: new Date().toISOString(),
-        helpful: 0,
-        verified: false
+        product_id: formData.product_id,
+        customer_name: formData.customer_name,
+        email: formData.email,
+        rating: formData.rating,
+        review_text: formData.review_text
       }
       
       await onSubmit(reviewData)
       
       // Reset form
       setFormData({
+        product_id: productId || null,
+        customer_name: '',
+        email: '',
         rating: 0,
-        title: '',
-        content: ''
+        review_text: ''
       })
       
     } catch (error) {
@@ -134,43 +141,63 @@ export default function ReviewForm({
           )}
         </div>
 
-        {/* Title */}
+        {/* Customer Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Review Title <span className="text-red-500">*</span>
+            Your Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            name="title"
-            value={formData.title}
+            name="customer_name"
+            value={formData.customer_name}
             onChange={handleInputChange}
-            placeholder="Summarize your experience"
+            placeholder="Enter your full name"
             className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-              errors.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              errors.customer_name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
           />
-          {errors.title && (
-            <p className="mt-1 text-sm text-red-600">{errors.title}</p>
+          {errors.customer_name && (
+            <p className="mt-1 text-sm text-red-600">{errors.customer_name}</p>
           )}
         </div>
 
-        {/* Content */}
+        {/* Email */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Email Address <span className="text-gray-400 text-xs">(Optional)</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="your.email@example.com"
+            className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+              errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+            }`}
+          />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+          )}
+        </div>
+
+        {/* Review Text */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Your Review <span className="text-red-500">*</span>
           </label>
           <textarea
-            name="content"
-            value={formData.content}
+            name="review_text"
+            value={formData.review_text}
             onChange={handleInputChange}
-            placeholder="Tell us about your experience with this product..."
+            placeholder="Share your experience with this product..."
             rows={4}
-            className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-              errors.content ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+            className={`w-full px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none ${
+              errors.review_text ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
           />
-          {errors.content && (
-            <p className="mt-1 text-sm text-red-600">{errors.content}</p>
+          {errors.review_text && (
+            <p className="mt-1 text-sm text-red-600">{errors.review_text}</p>
           )}
         </div>
 
