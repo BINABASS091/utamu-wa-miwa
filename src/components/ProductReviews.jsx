@@ -26,7 +26,6 @@ const loadReviews = (customerName) => {
       })
       return sortedReviews
     } catch (e) {
-      console.error('Error loading reviews:', e)
     }
   }
   return []
@@ -37,7 +36,6 @@ const saveReviews = (reviews) => {
   try {
     localStorage.setItem('utamuReviews', JSON.stringify(reviews))
   } catch (e) {
-    console.error('Error saving reviews:', e)
   }
 }
 

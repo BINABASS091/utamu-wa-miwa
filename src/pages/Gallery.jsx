@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { X, ZoomIn, ChevronLeft, ChevronRight, Leaf, Loader2 } from 'lucide-react'
+import { X, ZoomIn, ChevronLeft, ChevronRight, Leaf, Loader2, Clock } from 'lucide-react'
 import { WhatsAppIcon } from '../components/BrandIcons'
 import { useLanguage } from '../contexts/LanguageContext'
 
@@ -46,6 +46,7 @@ const galleryItems = [
   },
   {
     id: 4,
+    comingSoon: true,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 400w',
@@ -59,6 +60,7 @@ const galleryItems = [
   },
   {
     id: 5,
+    comingSoon: true,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_rsvu87.jpg 400w',
@@ -72,6 +74,7 @@ const galleryItems = [
   },
   {
     id: 6,
+    comingSoon: true,
     src: 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg',
     srcSet: [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_400,h_300,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 400w',
@@ -196,6 +199,16 @@ export default function Gallery() {
                 {/* Enhanced gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
+                {/* Coming Soon overlay */}
+                {item.comingSoon && (
+                  <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-10">
+                    <div className="text-center">
+                      <Clock className="w-10 h-10 text-white/80 mx-auto mb-2" />
+                      <p className="text-white font-bold text-lg">{t('common.comingSoon')}</p>
+                      <p className="text-white/70 text-xs mt-1">{t('common.preOrder')}</p>
+                    </div>
+                  </div>
+                )}
                 {/* Tag badge (top-left) */}
                 {item.tagKey && (
                   <span className="absolute top-4 left-4 px-3 py-1 bg-white/90 text-green-700 text-xs font-bold rounded-full shadow">

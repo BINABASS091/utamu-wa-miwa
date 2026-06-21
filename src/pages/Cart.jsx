@@ -22,12 +22,6 @@ export default function Cart() {
     generateWhatsAppMessage
   } = useCart()
 
-  const [showCheckout, setShowCheckout] = useState(false)
-
-  const handleCheckout = () => {
-    setShowCheckout(true)
-  }
-
   const handleWhatsAppOrder = () => {
     const message = generateWhatsAppMessage()
     const whatsappUrl = `https://wa.me/255718622621?text=${message}`
@@ -98,10 +92,10 @@ export default function Cart() {
                           {t(item.nameKey)}
                         </h4>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {t(item.categoryKey)} • {t(`price.${item.size}`)}
+                          {t(item.categoryKey)}
                         </p>
                         <p className="text-sm font-medium text-green-600">
-                          {formatPrice(item.price, language)} ({t(`price.${item.size}Price`)})
+                          {formatPrice(item.price, language)}
                         </p>
                       </div>
                       <div className="flex flex-col items-end gap-2">

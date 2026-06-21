@@ -97,9 +97,7 @@ export const sendReviewNotifications = async (review) => {
     // Optional: Also send email as backup
     // await sendReviewEmailNotification(review)
     
-    console.log('Review notifications sent successfully')
   } catch (error) {
-    console.error('Error sending review notifications:', error)
   }
 }
 

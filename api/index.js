@@ -16,8 +16,6 @@ import {
   requireAdmin 
 } from './auth.js';
 
-dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 

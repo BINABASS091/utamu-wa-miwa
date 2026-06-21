@@ -54,6 +54,14 @@ export const LanguageProvider = ({ children }) => {
         
         'home.stats.customers': 'Happy Customers',
         'home.stats.flavors': 'Unique Flavors',
+        'home.stats.natural': 'Natural',
+        'home.hero.badge': 'Pure & Natural · Zanzibar',
+        'home.hero.orderWhatsApp': 'Order on WhatsApp',
+        'home.hero.floatingBadge': "Zanzibar's Finest",
+        'home.hero.floatingDesc': 'Loved by 500+ customers',
+        'home.hero.naturalBadge': '100% Natural',
+        'home.about.tagline': '"Fresh from farm to glass"',
+        'home.about.taglineSub': 'Every cup, every day, with love.',
         'home.stats.years': 'Years of Excellence',
         'home.stats.daily': 'Fresh Daily',
         
@@ -211,6 +219,10 @@ export const LanguageProvider = ({ children }) => {
         'cart.phonePlaceholder': 'Your phone number',
         'cart.addressPlaceholder': 'Delivery address',
         'cart.timePlaceholder': 'Scheduled time (e.g., 2:00 PM)',
+        'cart.items': 'Items',
+        'cart.subtotal': 'Subtotal',
+        'cart.free': 'Free',
+        'cart.orderSummary': 'Order Summary',
         'cart.total': 'Total',
         'cart.clear': 'Clear Cart',
         'cart.orderWhatsApp': 'Order via WhatsApp',
@@ -219,19 +231,9 @@ export const LanguageProvider = ({ children }) => {
         'cart.itemRemoved': 'Removed from cart',
         'cart.cartUpdated': 'Cart updated',
         
-        // Pricing categories
-        'price.small': 'Small Glass',
-        'price.medium': 'Medium Glass', 
-        'price.large': 'Large Bottle',
-        'price.selectSize': 'Select Size',
+        // Pricing
         'price.from': 'From',
-        'price.selectPrice': 'Select Price',
-        'price.smallPrice': '500 TZS',
-        'price.mediumPrice': '1,000 TZS',
-        'price.largePrice': '4,000 TZS',
-        'price.smallGlass': 'Small - 500 TZS',
-        'price.mediumGlass': 'Medium - 1,000 TZS',
-        'price.largeBottle': 'Large - 4,000 TZS',
+        'price.price': '500 TZS',
         
         // Store Locator
         'storeLocator.hero.title': 'Find Our Stores',
@@ -311,6 +313,14 @@ export const LanguageProvider = ({ children }) => {
         
         'home.stats.customers': 'Wateja Wenye Furaha',
         'home.stats.flavors': 'Flava za Kipekee',
+        'home.stats.natural': 'Asili',
+        'home.hero.badge': 'Safi na Asili · Zanzibar',
+        'home.hero.orderWhatsApp': 'Agiza kwenye WhatsApp',
+        'home.hero.floatingBadge': 'Bora Zanzibar',
+        'home.hero.floatingDesc': 'Inapendwa na wateja 500+',
+        'home.hero.naturalBadge': '100% Asili',
+        'home.about.tagline': '"Freshi kutoka shambani kwa glasi"',
+        'home.about.taglineSub': 'Kila kikombe, kila siku, kwa upendo.',
         'home.stats.years': 'Miaka ya Ufanisi',
         'home.stats.daily': 'Freshi Kila Siku',
         
@@ -470,6 +480,10 @@ export const LanguageProvider = ({ children }) => {
         'cart.phonePlaceholder': 'Namba ya simu yako',
         'cart.addressPlaceholder': 'Anwani ya uwasilishaji',
         'cart.timePlaceholder': 'Muda uliopangwa (k.m., 2:00 PM)',
+        'cart.items': 'Bidhaa',
+        'cart.subtotal': 'Jumla Ndogo',
+        'cart.free': 'Bure',
+        'cart.orderSummary': 'Muhtasari wa Agizo',
         'cart.total': 'Jumla',
         'cart.clear': 'Futa Basketi',
         'cart.orderWhatsApp': 'Agiza kupitia WhatsApp',
@@ -478,19 +492,9 @@ export const LanguageProvider = ({ children }) => {
         'cart.itemRemoved': 'Imeondolewa kwenye basketi',
         'cart.cartUpdated': 'Basketi imesasishwa',
         
-        // Pricing categories
-        'price.small': 'Kikombe Kidogo',
-        'price.medium': 'Kikombe Kati', 
-        'price.large': 'Chupa Kubwa',
-        'price.selectSize': 'Chagua Ukubwa',
+        // Pricing
         'price.from': 'Kuanzia',
-        'price.selectPrice': 'Chagua Bei',
-        'price.smallPrice': '500 TZS',
-        'price.mediumPrice': '1,000 TZS',
-        'price.largePrice': '4,000 TZS',
-        'price.smallGlass': 'Kidogo - 500 TZS',
-        'price.mediumGlass': 'Kati - 1,000 TZS',
-        'price.largeBottle': 'Kubwa - 4,000 TZS',
+        'price.price': '500 TZS',
         
         // Store Locator
         'storeLocator.hero.title': 'Pata Maduka Yetu',
@@ -570,6 +574,14 @@ export const LanguageProvider = ({ children }) => {
         
         'home.stats.customers': 'Clienti Felici',
         'home.stats.flavors': 'Gusti Unici',
+        'home.stats.natural': 'Naturale',
+        'home.hero.badge': 'Puro e Naturale · Zanzibar',
+        'home.hero.orderWhatsApp': 'Ordina su WhatsApp',
+        'home.hero.floatingBadge': 'Il Meglio di Zanzibar',
+        'home.hero.floatingDesc': 'Amato da 500+ clienti',
+        'home.hero.naturalBadge': '100% Naturale',
+        'home.about.tagline': '"Fresco dalla fattoria al bicchiere"',
+        'home.about.taglineSub': 'Ogni bicchiere, ogni giorno, con amore.',
         'home.stats.years': 'Anni di Eccellenza',
         'home.stats.daily': 'Fresco Ogni Giorno',
         
@@ -727,6 +739,10 @@ export const LanguageProvider = ({ children }) => {
         'cart.phonePlaceholder': 'Il tuo numero di telefono',
         'cart.addressPlaceholder': 'Indirizzo di consegna',
         'cart.timePlaceholder': 'Orario programmato (es., 2:00 PM)',
+        'cart.items': 'Articoli',
+        'cart.subtotal': 'Subtotale',
+        'cart.free': 'Gratis',
+        'cart.orderSummary': 'Riepilogo Ordine',
         'cart.total': 'Totale',
         'cart.clear': 'Svuota Carrello',
         'cart.orderWhatsApp': 'Ordina via WhatsApp',
@@ -735,19 +751,9 @@ export const LanguageProvider = ({ children }) => {
         'cart.itemRemoved': 'Rimosso dal carrello',
         'cart.cartUpdated': 'Carrello aggiornato',
         
-        // Pricing categories
-        'price.small': 'Bicchiere Piccolo',
-        'price.medium': 'Bicchiere Medio', 
-        'price.large': 'Bottiglia Grande',
-        'price.selectSize': 'Seleziona Dimensione',
+        // Pricing
         'price.from': 'Da',
-        'price.selectPrice': 'Seleziona Prezzo',
-        'price.smallPrice': '500 TZS',
-        'price.mediumPrice': '1,000 TZS',
-        'price.largePrice': '4,000 TZS',
-        'price.smallGlass': 'Piccolo - 500 TZS',
-        'price.mediumGlass': 'Medio - 1,000 TZS',
-        'price.largeBottle': 'Grande - 4,000 TZS',
+        'price.price': '500 TZS',
         
         // Store Locator
         'storeLocator.hero.title': 'Trova i Nostri Negozi',

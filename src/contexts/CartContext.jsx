@@ -1,10 +1,8 @@
 import { createContext, useContext, useReducer, useEffect } from 'react'
 import { getPriceInTZS, formatPrice, formatPriceForWhatsApp } from '../utils/currency'
 
-// Cart context for managing shopping cart state
 const CartContext = createContext()
 
-// Action types
 const CART_ACTIONS = {
   ADD_ITEM: 'ADD_ITEM',
   REMOVE_ITEM: 'REMOVE_ITEM',
@@ -15,7 +13,6 @@ const CART_ACTIONS = {
   SET_DELIVERY_INFO: 'SET_DELIVERY_INFO'
 }
 
-// Initial state
 const initialState = {
   items: [],
   totalItems: 0,
@@ -25,13 +22,12 @@ const initialState = {
     name: '',
     phone: '',
     address: '',
-    deliveryType: 'pickup', // 'pickup' or 'delivery'
+    deliveryType: 'pickup',
     scheduledTime: ''
   },
   isOpen: false
 }
 
-// Calculate totals
 const calculateTotals = (items) => {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
   const totalPrice = items.reduce((sum, item) => {
@@ -41,7 +37,6 @@ const calculateTotals = (items) => {
   return { totalItems, totalPrice }
 }
 
-// Cart reducer
 const cartReducer = (state, action) => {
   switch (action.type) {
     case CART_ACTIONS.ADD_ITEM: {
@@ -52,14 +47,12 @@ const cartReducer = (state, action) => {
 
       let newItems
       if (existingItemIndex >= 0) {
-        // Update existing item quantity
         newItems = state.items.map((item, index) =>
           index === existingItemIndex
             ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       } else {
-        // Add new item
         newItems = [...state.items, {
           id: product.id,
           nameKey: product.nameKey,
@@ -168,11 +161,9 @@ const cartReducer = (state, action) => {
   }
 }
 
-// Cart provider component
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('utamu_cart')
     if (savedCart) {
@@ -183,12 +174,10 @@ export const CartProvider = ({ children }) => {
           payload: { ...parsedCart, isOpen: false }
         })
       } catch (error) {
-        console.error('Failed to load cart from localStorage:', error)
       }
     }
   }, [])
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     const cartToSave = {
       items: state.items,
@@ -200,8 +189,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('utamu_cart', JSON.stringify(cartToSave))
   }, [state.items, state.totalItems, state.totalPrice, state.orderNote, state.deliveryInfo])
 
-  // Cart actions
-  const addToCart = (product, quantity = 1, size = 'medium') => {
+  const addToCart = (product, quantity = 1, size = 'small') => {
     const price = getPriceInTZS(size)
     dispatch({
       type: CART_ACTIONS.ADD_ITEM,
@@ -253,48 +241,47 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'CLOSE_CART' })
   }
 
-  // Generate WhatsApp order message
   const generateWhatsAppMessage = () => {
     if (state.items.length === 0) return ''
 
-    let message = '🥤 *New Order - Utamu wa Miwa*\n\n'
-    message += `📝 *Order Details:*\n`
+    let message = '\U0001f944 *New Order - Utamu wa Miwa*\n\n'
+    message += '\U0001f4dd *Order Details:*\n'
     
     state.items.forEach((item, index) => {
-      const priceCategory = item.size === 'small' ? '500 TZS' : item.size === 'medium' ? '1,000 TZS' : '4,000 TZS'
-      const sizeLabel = item.size === 'small' ? 'Small Glass' : item.size === 'medium' ? 'Medium Glass' : 'Large Bottle'
+      const price = getPriceInTZS(item.size)
+      const priceCategory = formatPriceForWhatsApp(price)
       message += `\n${index + 1}. *${item.nameKey}*\n`
-      message += `   Size: ${sizeLabel}\n`
-      message += `   Price Category: ${priceCategory}\n`
+      message += `   Size: ${item.size}\n`
+      message += `   Price: ${priceCategory}\n`
       message += `   Quantity: ${item.quantity}\n`
       message += `   Unit Price: ${formatPriceForWhatsApp(item.price)}\n`
       message += `   Subtotal: ${formatPriceForWhatsApp(item.price * item.quantity)}\n`
     })
 
-    message += `\n💰 *Total: ${formatPriceForWhatsApp(state.totalPrice)}*\n`
-    message += `📦 *Total Items: ${state.totalItems}*\n`
+    message += `\n\U0001f4b0 *Total: ${formatPriceForWhatsApp(state.totalPrice)}*\n`
+    message += `\U0001f4e6 *Total Items: ${state.totalItems}*\n`
 
     if (state.orderNote) {
-      message += `\n📝 *Order Note:*\n${state.orderNote}\n`
+      message += `\n\U0001f4dd *Order Note:*\n${state.orderNote}\n`
     }
 
-    message += `\n👤 *Customer Information:*\n`
+    message += `\n\U0001f464 *Customer Information:*\n`
     message += `Name: ${state.deliveryInfo.name || 'Not provided'}\n`
     message += `Phone: ${state.deliveryInfo.phone || 'Not provided'}\n`
 
     if (state.deliveryInfo.deliveryType === 'delivery') {
-      message += `🏠 *Delivery Address:*\n${state.deliveryInfo.address || 'Not provided'}\n`
+      message += `\U0001f3e0 *Delivery Address:*\n${state.deliveryInfo.address || 'Not provided'}\n`
       if (state.deliveryInfo.scheduledTime) {
-        message += `⏰ *Scheduled Time:* ${state.deliveryInfo.scheduledTime}\n`
+        message += `\u23f0 *Scheduled Time:* ${state.deliveryInfo.scheduledTime}\n`
       }
     } else {
-      message += `🏪 *Pickup Order*\n`
+      message += `\U0001f3ea *Pickup Order*\n`
       if (state.deliveryInfo.scheduledTime) {
-        message += `⏰ *Pickup Time:* ${state.deliveryInfo.scheduledTime}\n`
+        message += `\u23f0 *Pickup Time:* ${state.deliveryInfo.scheduledTime}\n`
       }
     }
 
-    message += `\n🙏 Thank you for your order!`
+    message += `\n\U0001f64f Thank you for your order!`
 
     return encodeURIComponent(message)
   }
@@ -320,7 +307,6 @@ export const CartProvider = ({ children }) => {
   )
 }
 
-// Custom hook to use cart context
 export const useCart = () => {
   const context = useContext(CartContext)
   if (!context) {
