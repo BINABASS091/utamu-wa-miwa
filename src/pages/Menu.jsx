@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { WhatsAppIcon } from '../components/BrandIcons'
-import { Filter, Plus, Star } from 'lucide-react'
+import { Filter, Plus, Star, Clock } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
-import { formatPrice, getPriceCategories } from '../utils/currency'
+import { formatPrice } from '../utils/currency'
 import ProductReviews from '../components/ProductReviews'
 
 const categoryKeys = ['menu.all', 'menu.classic', 'menu.blended', 'menu.tropical', 'menu.addons']
@@ -20,7 +20,7 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466063/WhatsApp_Image_2026-04-29_at_15.33.59_tyls0q.jpg 800w'
     ],
     descKey: 'product.classic.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    sizes: [],
     gradient: 'from-green-400 to-green-600',
     badgeKey: 'product.badge.popular',
   },
@@ -34,7 +34,7 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.46_1_qqaq60.jpg 800w'
     ],
     descKey: 'product.ginger.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    sizes: [],
     gradient: 'from-orange-400 to-red-500',
     badgeKey: null,
   },
@@ -48,7 +48,7 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123919/WhatsApp_Image_2026-04-25_at_16.28.46_2_kf7k2x.jpg 800w'
     ],
     descKey: 'product.lemon.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    sizes: [],
     gradient: 'from-yellow-400 to-green-500',
     badgeKey: null,
   },
@@ -62,7 +62,8 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_1_rjpc2c.jpg 800w'
     ],
     descKey: 'product.mint.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    comingSoon: true,
+    sizes: [],
     gradient: 'from-green-400 to-teal-500',
     badgeKey: 'product.badge.new',
   },
@@ -76,7 +77,8 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777466511/WhatsApp_Image_2026-04-29_at_15.38.59_obwrwo.jpg 800w'
     ],
     descKey: 'product.passion.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    comingSoon: true,
+    sizes: [],
     gradient: 'from-purple-400 to-pink-500',
     badgeKey: 'product.badge.new',
   },
@@ -90,7 +92,8 @@ const menuItems = [
       'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_auto,w_800,h_600,c_fill/v1777123918/WhatsApp_Image_2026-04-25_at_16.28.45_eumhtz.jpg 800w'
     ],
     descKey: 'product.cucumber.desc',
-    sizes: ['Small', 'Medium', 'Large'],
+    comingSoon: true,
+    sizes: [],
     gradient: 'from-green-400 to-emerald-500',
     badgeKey: 'product.badge.seasonal',
   },
@@ -101,8 +104,6 @@ export default function Menu() {
   const { addToCart } = useCart()
   const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
-  const [selectedSize, setSelectedSize] = useState({})
-  const priceCategories = getPriceCategories()
 
   const filtered = activeCategory === 'All'
     ? menuItems
@@ -170,6 +171,15 @@ export default function Menu() {
                       {t(product.badgeKey)}
                     </span>
                   )}
+                  {product.comingSoon && (
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center z-10">
+                      <div className="text-center">
+                        <Clock className="w-10 h-10 text-white/80 mx-auto mb-2" />
+                        <p className="text-white font-bold text-lg">{t('common.comingSoon')}</p>
+                        <p className="text-white/70 text-xs mt-1">{t('common.preOrder')}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Details */}
@@ -207,56 +217,27 @@ export default function Menu() {
                       {t('reviews.writeReview')}
                     </a>
                   </div>
-                  {product.sizes.length > 0 && (
-                    <div className="mb-3">
-                      <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">{t('price.selectPrice')}:</p>
-                      <div className="flex gap-1 flex-wrap">
-                        <button
-                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'small' }))}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            selectedSize[product.id] === 'small'
-                              ? 'bg-green-600 text-white'
-                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                          }`}
-                        >
-                          {t('price.smallGlass')}
-                        </button>
-                        <button
-                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'medium' }))}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            selectedSize[product.id] === 'medium'
-                              ? 'bg-green-600 text-white'
-                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                          }`}
-                        >
-                          {t('price.mediumGlass')}
-                        </button>
-                        <button
-                          onClick={() => setSelectedSize(prev => ({ ...prev, [product.id]: 'large' }))}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            selectedSize[product.id] === 'large'
-                              ? 'bg-green-600 text-white'
-                              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-                          }`}
-                        >
-                          {t('price.largeBottle')}
-                        </button>
-                      </div>
-                    </div>
-                  )}
+                  <div className="mb-3">
+                    <span className="text-xs font-medium text-green-600 dark:text-green-400">{t('price.price')}</span>
+                  </div>
                   <div className="flex justify-between items-center mt-auto">
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {t('price.from')} {formatPrice(priceCategories.small, language)}
+                      {t('price.price')}
                     </span>
                     <button
+                      disabled={product.comingSoon}
                       onClick={() => {
-                        const size = selectedSize[product.id] || 'medium'
+                        const size = 'small'
                         addToCart(product, 1, size)
                         navigate('/cart')
                       }}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-full transition-colors"
+                      className={`flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
+                        product.comingSoon
+                          ? 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                          : 'bg-green-600 hover:bg-green-700 text-white'
+                      }`}
                     >
-                      <Plus className="w-3.5 h-3.5" /> {t('cart.addToCart')}
+                      <Plus className="w-3.5 h-3.5" /> {product.comingSoon ? t('common.comingSoon') : t('cart.addToCart')}
                     </button>
                   </div>
                 </div>

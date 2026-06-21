@@ -47,9 +47,7 @@ export default function About() {
             <div className="animate-slide-up">
               <span className="text-green-600 font-semibold text-sm uppercase tracking-widest">{t('about.hero.title')}</span>
               <h2 className="text-4xl font-extrabold font-heading text-gray-900 dark:text-white mt-3 mb-6 leading-tight">
-                {t('about.story.title').split(' ').map((word, i) => 
-                  word === 'Soil' ? <span key={i} className="text-green-600">{word}</span> : word
-                ).reduce((prev, curr) => [prev, ' ', curr])}
+                {t('about.story.title')}
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
                 {t('about.story.p1')}

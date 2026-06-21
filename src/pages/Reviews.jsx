@@ -23,17 +23,13 @@ const saveReviews = (reviews) => {
     // Also save to sessionStorage as additional backup
     sessionStorage.setItem('utamuReviews_temp', JSON.stringify(reviews))
     
-    console.log(`Successfully saved ${reviews.length} reviews to localStorage`)
     return true
   } catch (e) {
-    console.error('Error saving reviews:', e)
     
     // Try to save to sessionStorage as fallback
     try {
       sessionStorage.setItem('utamuReviews_fallback', JSON.stringify(reviews))
-      console.log('Saved reviews to sessionStorage as fallback')
     } catch (fallbackError) {
-      console.error('Failed to save to sessionStorage too:', fallbackError)
     }
     return false
   }
@@ -45,41 +41,33 @@ const loadReviews = (customerName) => {
   
   // Try to recover from backup if primary storage is empty
   if (!stored) {
-    console.log('Primary storage empty, trying backup...')
     const backup = localStorage.getItem('utamuReviews_backup')
     if (backup) {
       try {
         const backupData = JSON.parse(backup)
         stored = JSON.stringify(backupData.reviews)
-        console.log('Recovered reviews from backup')
       } catch (e) {
-        console.error('Failed to parse backup:', e)
       }
     }
   }
   
   // Try sessionStorage as last resort
   if (!stored) {
-    console.log('Trying sessionStorage fallback...')
     const sessionData = sessionStorage.getItem('utamuReviews_temp') || 
                        sessionStorage.getItem('utamuReviews_fallback')
     if (sessionData) {
       stored = sessionData
-      console.log('Recovered reviews from sessionStorage')
     }
   }
   
   if (stored) {
     try {
       const allReviews = JSON.parse(stored)
-      console.log(`Loaded ${allReviews.length} reviews from storage`)
       
       // Filter only valid reviews (no longer filtering by specific customers)
       const validReviews = allReviews.filter(review => 
         review && review.name && review.title && review.content && review.rating
       )
-      
-      console.log(`Found ${validReviews.length} valid reviews`)
       
       // Sort by date (newest first)
       const sortedReviews = validReviews.sort((a, b) => {
@@ -90,11 +78,9 @@ const loadReviews = (customerName) => {
       
       return sortedReviews
     } catch (e) {
-      console.error('Error loading reviews:', e)
     }
   }
   
-  console.log('No reviews found in any storage')
   return [] // Start with empty array - no sample reviews
 }
 
@@ -117,11 +103,9 @@ export default function Reviews() {
         
         if (data.success) {
           setReviews(data.data)
-        } else {
-          console.error('Failed to fetch reviews:', data.error)
         }
       } catch (error) {
-        console.error('Error fetching reviews:', error)
+
       } finally {
         setLoading(false)
       }
@@ -155,11 +139,9 @@ export default function Reviews() {
         fetchReviews()
         
         setShowForm(false)
-      } else {
-        console.error('Failed to submit review:', result.error)
       }
     } catch (error) {
-      console.error('Error submitting review:', error)
+
     }
   }
 
@@ -210,11 +192,6 @@ export default function Reviews() {
       // Save to all storage locations
       const saveSuccess = saveReviews(updatedReviews)
       
-      if (!saveSuccess) {
-        console.error('Failed to save review to primary storage')
-        // Still proceed with update but warn user
-      }
-      
       // Update state
       setReviews(updatedReviews)
       
@@ -229,7 +206,6 @@ export default function Reviews() {
       try {
         await sendReviewNotifications(newReview)
       } catch (notificationError) {
-        console.warn('Failed to send notifications:', notificationError)
       }
       
       setShowForm(false)
@@ -241,7 +217,6 @@ export default function Reviews() {
       alert(message)
       
     } catch (error) {
-      console.error('Error submitting review:', error)
       alert('There was an error submitting your review. Please try again.')
     }
   }
@@ -438,7 +413,7 @@ export default function Reviews() {
                     helpful: review.helpful_votes,
                     verified: review.is_verified_purchase
                   }}
-                  onHelpful={() => console.log('Helpful clicked')}
+                  onHelpful={() => {}}
                 />
               ))}
             </div>

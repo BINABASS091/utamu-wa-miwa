@@ -1,13 +1,13 @@
 ﻿import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Star, ArrowRight, Droplet, Zap, Heart, Award, Leaf, Plus } from 'lucide-react'
+import { Star, ArrowRight, Droplet, Zap, Heart, Award, Leaf, Plus, Clock } from 'lucide-react'
 import { WhatsAppIcon, SugarCaneIcon } from '../components/BrandIcons'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useCart } from '../contexts/CartContext'
-import { formatPrice, getPriceCategories } from '../utils/currency'
+import { formatPrice } from '../utils/currency'
 
 const HERO_IMAGE = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_80,w_900,dpr_auto/v1777461351/Utamuwamua-01_4_llsohy.png'
 const HERO_IMAGE_PLACEHOLDER = 'https://res.cloudinary.com/diyy8h0d9/image/upload/f_auto,q_10,w_100/v1777461351/Utamuwamua-01_4_llsohy.png'
@@ -134,7 +134,6 @@ export default function Home() {
   const { addToCart } = useCart()
   const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const priceCategories = getPriceCategories()
 
   return (
     <div className="pt-16 overflow-x-hidden">
@@ -151,7 +150,7 @@ export default function Home() {
             {/* Left â€” Text */}
             <div className="text-center lg:text-left order-2 lg:order-1">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-yellow-400/20 border border-yellow-400/40 text-yellow-300 text-xs font-bold rounded-full uppercase tracking-widest mb-6">
-                <Leaf size={12} /> Pure &amp; Natural · Zanzibar
+                <Leaf size={12} /> {t('home.hero.badge')}
               </span>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold font-heading text-white leading-[1.1] mb-6">
@@ -175,20 +174,20 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-white/10 border border-white/30 text-white font-bold rounded-full transition-all duration-200 hover:bg-white/20 inline-flex items-center justify-center gap-2 text-base backdrop-blur-sm"
                 >
-                  <WhatsAppIcon className="w-5 h-5 text-green-400" /> Order on WhatsApp
+                  <WhatsAppIcon className="w-5 h-5 text-green-400" /> {t('home.hero.orderWhatsApp')}
                 </a>
               </div>
 
               {/* Stats */}
               <div className="flex gap-8 justify-center lg:justify-start">
                 {[
-                  { value: '500+', label: 'Happy Customers' },
-                  { value: '5', label: 'Juice Flavors' },
-                  { value: '100%', label: 'Natural' },
+                  { value: '500+', labelKey: 'home.stats.customers' },
+                  { value: '5', labelKey: 'home.stats.flavors' },
+                  { value: '100%', labelKey: 'home.stats.natural' },
                 ].map((s) => (
-                  <div key={s.label} className="text-center">
+                  <div key={s.labelKey} className="text-center">
                     <p className="text-3xl font-extrabold text-yellow-400 font-heading">{s.value}</p>
-                    <p className="text-xs text-green-300 mt-0.5">{s.label}</p>
+                    <p className="text-xs text-green-300 mt-0.5">{t(s.labelKey)}</p>
                   </div>
                 ))}
               </div>
@@ -219,14 +218,14 @@ export default function Home() {
                   {[...Array(5)].map((_, i) => <Star key={i} size={14} className="text-yellow-400" fill="currentColor" />)}
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-900 dark:text-white">Zanzibar's Finest</p>
-                  <p className="text-xs text-gray-500">Loved by 500+ customers</p>
+                  <p className="text-xs font-bold text-gray-900 dark:text-white">{t('home.hero.floatingBadge')}</p>
+                  <p className="text-xs text-gray-500">{t('home.hero.floatingDesc')}</p>
                 </div>
               </div>
 
               {/* Top badge */}
               <div className="absolute top-4 right-4 lg:-right-4 bg-yellow-400 rounded-2xl px-4 py-2 shadow-xl z-20">
-                <p className="text-xs font-extrabold text-gray-900 flex items-center gap-1"><Leaf size={12} /> 100% Natural</p>
+                <p className="text-xs font-extrabold text-gray-900 flex items-center gap-1"><Leaf size={12} /> {t('home.hero.naturalBadge')}</p>
               </div>
             </div>
           </div>
@@ -304,9 +303,9 @@ export default function Home() {
                     />
                   </div>
                   <p className="text-white text-lg font-semibold font-heading italic lg:whitespace-nowrap lg:overflow-hidden lg:text-ellipsis">
-                    "Fresh from farm to glass"
+                    {t('home.about.tagline')}
                   </p>
-                  <p className="text-green-300 text-sm mt-2">Every cup, every day, with love.</p>
+                  <p className="text-green-300 text-sm mt-2">{t('home.about.taglineSub')}</p>
                 </div>
               </div>
             </div>
@@ -348,25 +347,22 @@ export default function Home() {
                       {t(product.badgeKey)}
                     </span>
                   )}
+                  {product.comingSoon && (
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
+                      <div className="text-center">
+                        <Clock className="w-10 h-10 text-white/80 mx-auto mb-2" />
+                        <p className="text-white font-bold text-lg">{t('common.comingSoon')}</p>
+                        <p className="text-white/70 text-xs mt-1">{t('common.preOrder')}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-extrabold font-heading text-gray-900 dark:text-white text-lg mb-2">
-                    {product.nameKey === 'product.classic' ? 'Classic Sugarcane' : 
-                     product.nameKey === 'product.ginger' ? 'Classic Ginger' : 
-                     product.nameKey === 'product.lemon' ? 'Classic Lemon' : 
-                     product.nameKey === 'product.mint' ? 'Classic Mint' : 
-                     product.nameKey === 'product.passion' ? 'Classic Passion' : 
-                     product.nameKey === 'product.cucumber' ? 'Classic Cucumber' : 
-                     t(product.nameKey)}
+                    {t(product.nameKey)}
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 flex-1">
-                    {product.descKey === 'product.classic.desc' ? 'Pure, refreshing sugarcane the way nature intended.' : 
-                     product.descKey === 'product.ginger.desc' ? 'Spicy ginger meets sweet sugarcane for an invigorating drink.' : 
-                     product.descKey === 'product.lemon.desc' ? 'Zesty lemon adds a refreshing citrus to classic sugarcane.' : 
-                     product.descKey === 'product.mint.desc' ? 'Cool mint creates a perfectly refreshing and soothing drink.' : 
-                     product.descKey === 'product.passion.desc' ? 'Tropical passion with sugarcane juice' : 
-                     product.descKey === 'product.cucumber.desc' ? 'Crisp cucumber provides extra hydration and freshness.' : 
-                     t(product.descKey)}
+                    {t(product.descKey)}
                   </p>
                                   </div>
               </div>
